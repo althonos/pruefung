@@ -1,5 +1,6 @@
 sudo: false
 language: rust
+cache: cargo
 
 rust:
   - stable
@@ -23,8 +24,13 @@ addons:
       - cmake
 
 before_script:
+  - pip install travis-cargo --user
   - export PATH=$HOME/.local/bin:$PATH
 
 after_success:
-  - travis-cargo coverage
+  - travis-cargo coverage --no-sudo
   - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+  - althonosdev@gmail.com
