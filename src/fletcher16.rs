@@ -7,6 +7,12 @@ extern crate digest;
 use core::borrow::BorrowMut;
 
 
+mod consts {
+    pub const BASE: u32 = 0xFF;
+    pub const NMAX: usize = 20;
+}
+
+
 #[derive(Copy, Clone)]
 pub struct Fletcher16 {
     sum1: u16,
@@ -28,15 +34,15 @@ impl Fletcher16 {
     #[inline]
     fn finalize(self) -> [u16; 2]{
         [
-            (self.sum1 & 0xff) + (self.sum1 >> 8),
-            (self.sum2 & 0xff) + (self.sum2 >> 8),
+            (self.sum1 & consts::BASE) + (self.sum1 >> 8),
+            (self.sum2 & consts::BASE) + (self.sum2 >> 8),
         ]
     }
 
     #[inline]
     pub fn hash(self) -> u16 {
         let sums = self.finalize();
-        ((sums[1] << 8) | sums[0]) as u16
+        (sums[1] << 8) | sums[0]
     }
 
     #[inline]
@@ -49,18 +55,18 @@ impl Fletcher16 {
 
             i = 0;
             // Read bytes by block of 20 (max value before u8 overflow)
-            for &byte in byte_it.borrow_mut().take(20) {
+            for &byte in byte_it.borrow_mut().take(consts::NMAX) {
                 self.sum1 += byte as u16;
                 self.sum2 += self.sum1;
                 i += 1;
             }
 
             // Reduce sums to u8
-            self.sum1 = (self.sum1 & 0xff) + (self.sum1 >> 8);
-            self.sum2 = (self.sum2 & 0xff) + (self.sum2 >> 8);
+            self.sum1 = (self.sum1 & consts::BASE) + (self.sum1 >> 8);
+            self.sum2 = (self.sum2 & consts::BASE) + (self.sum2 >> 8);
 
             // If the last block was read, stop
-            if i < 20 {break;}
+            if i < consts::NMAX {break;}
         }
     }
 }
