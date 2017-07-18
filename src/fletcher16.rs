@@ -7,8 +7,8 @@ extern crate digest;
 use core::borrow::BorrowMut;
 
 
-mod consts {
-    pub const BASE: u32 = 0xFF;
+mod consts {
+    pub const BASE: u16 = 0xFF;
     pub const NMAX: usize = 20;
 }
 
