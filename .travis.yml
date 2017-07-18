@@ -14,9 +14,6 @@ env:
   global:
   - RUSTFLAGS="-C link-dead-code"
 
-before_install:
-  - sudo apt-get update
-
 addons:
   apt:
     packages:
@@ -25,6 +22,9 @@ addons:
       - libdw-dev
       - cmake
 
+before_script:
+  - export PATH=$HOME/.local/bin:$PATH
+
 after_success:
-  - $HOME/.local/bin/travis-cargo coverage
+  - travis-cargo coverage
   - bash <(curl -s https://codecov.io/bash)
