@@ -1,0 +1,30 @@
+[package]
+name = "pruefung"
+version = "0.1.0"
+authors = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+
+# [lib]
+# name = "pruefung"
+# path = "src/lib/mod.rs"
+# doctest = true
+# bench = true
+# doc = true
+# plugin = false
+# proc-macro = false
+# harness = true
+
+[dependencies]
+byte-tools = "0.2"
+block-buffer = "0.3"
+digest = { version = "0.6", optional = true }
+generic-array = { version = "0.8", optional=true }
+
+[dev-dependencies]
+crypto-tests = "0.5"
+
+[badges]
+travis-ci = { repository = "althonos/pruefung" }
+
+[features]
+generic = ["generic-array", "digest"]
+default = ["generic"]
