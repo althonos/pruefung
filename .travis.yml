@@ -1,6 +1,8 @@
 sudo: false
+dist: trusty
 language: rust
 cache: cargo
+
 
 rust:
   - stable
@@ -18,13 +20,11 @@ env:
 addons:
   apt:
     packages:
-      - libcurl-dev
+      - libcurl4-openssl-dev
       - libelf-dev
       - libdw-dev
       - binutils-dev
       - cmake
-    sources:
-      - kalakris-cmake
 
 before_script:
   - cargo install cargo-travis
