@@ -24,11 +24,11 @@ addons:
       - cmake
 
 before_script:
-  - pip install travis-cargo --user
-  - export PATH=$HOME/.local/bin:$PATH
+  - cargo install cargo-travis
+  - export PATH=$HOME/.cargo/bin:$PATH
 
 after_success:
-  - travis-cargo coverage --no-sudo
+  - cargo coverage
   - bash <(curl -s https://codecov.io/bash)
 
 notifications:
