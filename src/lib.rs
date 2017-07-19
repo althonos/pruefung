@@ -8,7 +8,8 @@ extern crate generic_array;
 extern crate digest;
 
 
+pub mod adler32;
+pub mod bsd;
 pub mod crc32;
 pub mod crc32c;
 pub mod fletcher16;
-pub mod adler32;
