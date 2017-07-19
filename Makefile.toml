@@ -1,8 +1,8 @@
 [tasks.coverage]
-install_crate = "cargo-tarpaulin"
-command       = "cargo"
-args          = ["tarpaulin"]
-windows_alias = "empty"
-mac_alias     = "empty"
+install_crate  = "cargo-tarpaulin"
+command        = "cargo"
+args           = ["tarpaulin"]
+windows_alias  = "empty"
+mac_alias      = "empty"
 install_script = []
-script = []
+script         = []

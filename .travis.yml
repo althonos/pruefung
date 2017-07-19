@@ -16,14 +16,19 @@ matrix:
 env:
   global:
   - RUSTFLAGS="-C link-dead-code"
-  - CARGO_MAKE_RUN_CODECOV="true"
 
-before_script:
+before_install:
   - if [[ ! -e "$HOME/.cargo/bin/cargo-make" ]]; then cargo install --debug cargo-make; fi
   - export PATH=$HOME/.cargo/bin:$PATH
 
+install:
+  - cargo make build
+
 script:
-  - cargo make ci-flow
+  - cargo make test
+
+after_success:
+  - cargo make codecov
 
 notifications:
   email:
