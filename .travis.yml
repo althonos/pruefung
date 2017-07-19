@@ -18,25 +18,12 @@ env:
   - RUSTFLAGS="-C link-dead-code"
   - CARGO_MAKE_RUN_CODECOV="true"
 
-addons:
-  apt:
-    packages:
-      - libcurl4-openssl-dev
-      - libelf-dev
-      - libdw-dev
-      - binutils-dev
-      - cmake
-      - kcov
-
 before_script:
-  - cargo install --debug cargo-make
+  - if [[ ! -e "$HOME/.cargo/bin/cargo-make" ]]; then cargo install --debug cargo-make; fi
   - export PATH=$HOME/.cargo/bin:$PATH
 
 script:
   - cargo make ci-flow
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:
