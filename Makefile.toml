@@ -11,3 +11,6 @@ script         = []
 install_crate = "cargo-audit"
 command       = "cargo"
 args          = ["audit"]
+
+[tasks.codecov]
+dependencies = ["coverage"]
