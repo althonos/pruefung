@@ -27,6 +27,9 @@ install:
 script:
   - cargo make test
 
+after_script:
+  - cargo make audit
+
 after_success:
   - cargo make codecov
 

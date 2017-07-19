@@ -6,3 +6,8 @@ windows_alias  = "empty"
 mac_alias      = "empty"
 install_script = []
 script         = []
+
+[tasks.audit]
+install_crate = "cargo-audit"
+command       = "cargo"
+args          = ["audit"]
