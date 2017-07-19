@@ -16,6 +16,7 @@ matrix:
 env:
   global:
   - RUSTFLAGS="-C link-dead-code"
+  - CARGO_MAKE_RUN_CODECOV="true"
 
 addons:
   apt:
@@ -27,11 +28,11 @@ addons:
       - cmake
 
 before_script:
-  - cargo install cargo-travis
+  - cargo install --debug cargo-make
   - export PATH=$HOME/.cargo/bin:$PATH
 
 script:
-  - cargo coverage
+  - cargo make ci-flow
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
