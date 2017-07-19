@@ -26,6 +26,7 @@ addons:
       - libdw-dev
       - binutils-dev
       - cmake
+      - kcov
 
 before_script:
   - cargo install --debug cargo-make
