@@ -3,7 +3,7 @@ name        = "pruefung"
 version     = "0.1.0"
 authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
 license     = "MIT"
-description = "Redundancy checks in pure Rust"
+description = "Checksums in pure Rust"
 repository  = "https://github.com/althonos/pruefung"
 keywords    = ["checksum", "crc", "prüfung"]
 

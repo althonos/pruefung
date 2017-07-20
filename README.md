@@ -45,19 +45,21 @@ println!("Result: {:x}", hash)               // print the result as native hex
 Latest version of the crate implements the following checksums:
 
 
-Algorithm      | since version
--------------- | -------------
-[Adler32]      | `0.1.0`
-[BSD checksum] | `0.1.0`
-[CRC32]        | `0.1.0`
-[CRC32C]       | `0.1.0`
-[Fletcher16]   | `0.1.0`
+Algorithm       | since version
+--------------- | -------------
+[Adler32]       | `0.1.0`
+[BSD checksum]  | `0.1.0`
+[CRC32]         | `0.1.0`
+[CRC32C]        | `0.1.0`
+[Fletcher16]    | `0.1.0`
+[SysV checksum] | `0.1.0`
 
 [Adler32]: https://en.wikipedia.org/wiki/Adler-32
 [BSD checksum]: https://en.wikipedia.org/wiki/BSD_checksum
 [CRC32]: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
 [CRC32C]: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
 [Fletcher16]: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
+[SysV checksum]: https://en.wikipedia.org/wiki/SYSV_checksum
 
 These checksums are **NOT** cryptographically secure. They should not be used
 for something else than data validation against *accidental* modifications:
@@ -69,4 +71,4 @@ implemented by the RustCrypto developers.
 
 *I was in Switzerland when I started this project. Yet, I don't really speak
 german. But a slug version of `zyklische-redundanzprüfung` seemed like a nice
-name.*
+name, instead of another checksum, cksum, checksums, etc, crc crate.*
