@@ -131,32 +131,7 @@ impl Hasher for Unix {
     }
 }
 
-
-#[cfg(feature = "generic")]
-impl digest::BlockInput for Unix {
-    type BlockSize = generic_array::typenum::U512;
-}
-
-#[cfg(feature = "generic")]
-impl digest::Input for Unix {
-    #[inline]
-    fn process(&mut self, input: &[u8]) {
-        self.write(input);
-    }
-}
-
-#[cfg(feature = "generic")]
-impl digest::FixedOutput for Unix {
-    type OutputSize = generic_array::typenum::U4;
-
-    #[inline]
-    fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-        let mut out = generic_array::GenericArray::default();
-        byte_tools::write_u32_be(&mut out, self.finish() as u32);
-        out
-    }
-}
-
+implement_digest!(Unix, U1024, U4);
 
 #[cfg(test)]
 #[cfg(feature = "generic")]

@@ -114,32 +114,7 @@ impl Hasher for Crc32 {
     }
 }
 
-
-#[cfg(feature = "generic")]
-impl digest::BlockInput for Crc32 {
-    type BlockSize = generic_array::typenum::U64;
-}
-
-#[cfg(feature = "generic")]
-impl digest::Input for Crc32 {
-    #[inline]
-    fn process(&mut self, input: &[u8]) {
-        self.write(input);
-    }
-}
-
-#[cfg(feature = "generic")]
-impl digest::FixedOutput for Crc32 {
-    type OutputSize = generic_array::typenum::U4;
-
-    #[inline]
-    fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-        let mut out = generic_array::GenericArray::default();
-        byte_tools::write_u32_be(&mut out, self.finish() as u32);
-        out
-    }
-}
-
+implement_digest!(Crc32, U65536, U4);
 
 #[cfg(test)]
 #[cfg(feature = "generic")]

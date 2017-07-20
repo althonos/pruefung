@@ -72,34 +72,7 @@ impl Hasher for Fletcher16 {
     }
 }
 
-
-#[cfg(feature = "generic")]
-impl digest::BlockInput for Fletcher16 {
-    type BlockSize = generic_array::typenum::U20;
-}
-
-#[cfg(feature = "generic")]
-impl digest::Input for Fletcher16 {
-    #[inline]
-    fn process(&mut self, input: &[u8]) {
-        self.write(input);
-    }
-}
-
-#[cfg(feature = "generic")]
-impl digest::FixedOutput for Fletcher16 {
-    type OutputSize = generic_array::typenum::U2;
-
-    #[inline]
-    fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-        let mut out = generic_array::GenericArray::default();
-        let sums = self.finalize();
-        out[1] = sums[0] as u8;
-        out[0] = sums[1] as u8;
-        out
-    }
-}
-
+implement_digest!(Fletcher16, U1024, U2);
 
 #[cfg(test)]
 #[cfg(feature = "generic")]

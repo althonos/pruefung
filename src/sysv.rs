@@ -42,32 +42,8 @@ impl Hasher for SysV {
     }
 }
 
+implement_digest!(SysV, U512, U2);
 
-#[cfg(feature = "generic")]
-impl digest::BlockInput for SysV {
-    type BlockSize = generic_array::typenum::U512;
-}
-
-#[cfg(feature = "generic")]
-impl digest::Input for SysV {
-    #[inline]
-    fn process(&mut self, input: &[u8]) {
-        self.write(input);
-    }
-}
-
-#[cfg(feature = "generic")]
-impl digest::FixedOutput for SysV {
-    type OutputSize = generic_array::typenum::U2;
-
-    #[inline]
-    fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-        let mut out = generic_array::GenericArray::default();
-        out[0] = (self.state >> 8) as u8;
-        out[1] = (self.state & 0xFF) as u8;
-        out
-    }
-}
 
 
 #[cfg(test)]

@@ -1,4 +1,3 @@
-extern crate byte_tools;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -44,33 +43,7 @@ impl Hasher for Bsd {
     }
 }
 
-
-#[cfg(feature = "generic")]
-impl digest::BlockInput for Bsd {
-    type BlockSize = generic_array::typenum::U1024;
-}
-
-#[cfg(feature = "generic")]
-impl digest::Input for Bsd {
-    #[inline]
-    fn process(&mut self, input: &[u8]) {
-        self.write(input);
-    }
-}
-
-#[cfg(feature = "generic")]
-impl digest::FixedOutput for Bsd {
-    type OutputSize = generic_array::typenum::U2;
-
-    #[inline]
-    fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-        let mut out = generic_array::GenericArray::default();
-        out[0] = (self.state >> 8) as u8;
-        out[1] = (self.state & 0xFF) as u8;
-        out
-    }
-}
-
+implement_digest!(Bsd, U1024, U2);
 
 #[cfg(test)]
 #[cfg(feature = "generic")]
