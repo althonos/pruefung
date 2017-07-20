@@ -33,6 +33,18 @@ after_script:
 after_success:
   - cargo make codecov
 
+before_deploy:
+  - gem install --user-install chandler
+
+deploy:
+  - provider: script
+    script: chandler push
+    on:
+      tags: true
+      repo: althonos/pruefung
+      rust: stable
+
 notifications:
   email:
   - althonosdev@gmail.com
+
