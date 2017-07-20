@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Added
+- Following sum with Hasher & Digest implementations:
+    * UNIX (UNIX `cksum`)
+
 ## 0.1.0 - 2017-07-20
 
 ### Added

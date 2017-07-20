@@ -6,4 +6,5 @@ mod bsd;
 mod crc32;
 mod crc32c;
 mod fletcher16;
+mod unix;
 mod sysv;
