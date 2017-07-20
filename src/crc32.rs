@@ -91,7 +91,7 @@ pub struct CRC32 {
 impl Default for CRC32 {
     fn default() -> Self {
         CRC32 {
-            state: 0,
+            state: 0xFFFFFFFF,
         }
     }
 }
@@ -99,20 +99,18 @@ impl Default for CRC32 {
 impl Hasher for CRC32 {
     #[inline]
     fn write(&mut self, input: &[u8]) {
-        let mut crc = !self.state;
         let mut pos: u32;
 
         for &byte in input.iter() {
-            pos = (crc ^ byte as u32) & consts::BASE;
-            crc = (crc >> 8) ^ consts::LOOKUP_TABLE[pos as usize];
+            pos = (self.state ^ byte as u32) & consts::BASE;
+            self.state = (self.state >> 8) ^ consts::LOOKUP_TABLE[pos as usize];
         }
 
-        self.state = !crc;
     }
 
     #[inline]
     fn finish(&self) -> u64 {
-        self.state as u64
+        (!self.state) as u64
     }
 }
 

@@ -4,14 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
 
-## Added
+## [Unreleased]
+### Added
 - Following sum with Hasher & Digest implementations:
     * UNIX (UNIX `cksum`)
+### Fixed
+- **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
+  a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
+
 
 ## 0.1.0 - 2017-07-20
-
 ### Added
 - Following sums with Hasher & Digest implementations:
     * Adler32
