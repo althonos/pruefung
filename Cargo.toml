@@ -3,9 +3,12 @@ name        = "pruefung"
 version     = "0.1.0"
 authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
 license     = "MIT"
-description = "Checksums in pure Rust"
+description = """
+Checksums in pure Rust, including CRC32, CRC32C, Adler32, BSD and SysV sums, \
+UNIX cksum, Fletcher16, with no_std available, implementing the Hasher trait.
+"""
 repository  = "https://github.com/althonos/pruefung"
-keywords    = ["checksum", "crc"]
+keywords    = ["checksum", "crc", "hash"]
 
 [lib]
 name       = "pruefung"

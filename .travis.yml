@@ -30,8 +30,8 @@ script:
 after_script:
   - cargo make audit
 
-after_success:
-  - cargo make codecov
+# after_success:
+#   - cargo make codecov
 
 before_deploy:
   - gem install --user-install chandler
@@ -53,4 +53,3 @@ deploy:
 notifications:
   email:
   - althonosdev@gmail.com
-
