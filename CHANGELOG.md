@@ -8,21 +8,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Following sum with Hasher & Digest implementations:
-    * UNIX (UNIX `cksum`)
+    * Unix (UNIX `cksum`)
 ### Fixed
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
   a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
 ### Changed
 - Implemented unit tests using private macros module
+- Renamed checksum structs to follow Rust naming conventions (acronyms as single
+  CamelCased word): `BSD` -> `Bsd`, `CRC32(C)` -> `Crc32(c)`, `UNIX` -> `Unix`
 
 
 ## 0.1.0 - 2017-07-20
 ### Added
 - Following sums with Hasher & Digest implementations:
     * Adler32
-    * BSD checksum (UNIX `sum`)
-    * CRC32 (Ethernet variant)
-    * CRC32C (Castagnoli polynomial variant)
+    * Bsd checksum (UNIX `sum`)
+    * Crc32 (Ethernet variant)
+    * Crc32c (Castagnoli polynomial variant)
     * Fletcher16
     * SysV checksum (UNIX `sum -s`)
 - Tests and benchmarks generated with the [`crypto-tests`](https://crates.io/crates/crypto-tests) crate

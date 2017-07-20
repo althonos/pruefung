@@ -4,4 +4,4 @@
 extern crate crypto_tests;
 extern crate pruefung;
 
-bench_digest!(pruefung::unix::UNIX);
+bench_digest!(pruefung::unix::Unix);

@@ -83,20 +83,20 @@ mod consts {
 
 
 #[derive(Copy, Clone)]
-pub struct CRC32 {
+pub struct Crc32 {
     state: u32,
 }
 
 
-impl Default for CRC32 {
+impl Default for Crc32 {
     fn default() -> Self {
-        CRC32 {
+        Crc32 {
             state: 0xFFFFFFFF,
         }
     }
 }
 
-impl Hasher for CRC32 {
+impl Hasher for Crc32 {
     #[inline]
     fn write(&mut self, input: &[u8]) {
         let mut pos: u32;
@@ -116,12 +116,12 @@ impl Hasher for CRC32 {
 
 
 #[cfg(feature = "generic")]
-impl digest::BlockInput for CRC32 {
+impl digest::BlockInput for Crc32 {
     type BlockSize = generic_array::typenum::U64;
 }
 
 #[cfg(feature = "generic")]
-impl digest::Input for CRC32 {
+impl digest::Input for Crc32 {
     #[inline]
     fn process(&mut self, input: &[u8]) {
         self.write(input);
@@ -129,7 +129,7 @@ impl digest::Input for CRC32 {
 }
 
 #[cfg(feature = "generic")]
-impl digest::FixedOutput for CRC32 {
+impl digest::FixedOutput for Crc32 {
     type OutputSize = generic_array::typenum::U4;
 
     #[inline]
@@ -144,6 +144,6 @@ impl digest::FixedOutput for CRC32 {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-    unit_test_no_data!(CRC32, 0);
-    unit_test_part_data!(CRC32);
+    unit_test_no_data!(Crc32, 0);
+    unit_test_part_data!(Crc32);
 }

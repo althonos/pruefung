@@ -83,15 +83,15 @@ mod consts {
 
 
 #[derive(Copy, Clone)]
-pub struct UNIX {
+pub struct Unix {
     state: u32,
     length: usize,
 }
 
 
-impl Default for UNIX {
+impl Default for Unix {
     fn default() -> Self {
-        UNIX {
+        Unix {
             state: 0,
             length: 0,
         }
@@ -99,7 +99,7 @@ impl Default for UNIX {
 }
 
 
-impl Hasher for UNIX {
+impl Hasher for Unix {
     #[inline]
     fn write(&mut self, input: &[u8]) {
 
@@ -133,12 +133,12 @@ impl Hasher for UNIX {
 
 
 #[cfg(feature = "generic")]
-impl digest::BlockInput for UNIX {
+impl digest::BlockInput for Unix {
     type BlockSize = generic_array::typenum::U512;
 }
 
 #[cfg(feature = "generic")]
-impl digest::Input for UNIX {
+impl digest::Input for Unix {
     #[inline]
     fn process(&mut self, input: &[u8]) {
         self.write(input);
@@ -146,7 +146,7 @@ impl digest::Input for UNIX {
 }
 
 #[cfg(feature = "generic")]
-impl digest::FixedOutput for UNIX {
+impl digest::FixedOutput for Unix {
     type OutputSize = generic_array::typenum::U4;
 
     #[inline]
@@ -161,6 +161,6 @@ impl digest::FixedOutput for UNIX {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-    unit_test_no_data!(UNIX, !0u32);
-    unit_test_part_data!(UNIX);
+    unit_test_no_data!(Unix, !0u32);
+    unit_test_part_data!(Unix);
 }
