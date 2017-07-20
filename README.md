@@ -39,7 +39,7 @@ let data = b"Hello, world !";
 hasher.write(data);                          // Feed the hasher
 hasher.write("String data".as_bytes());      // (possibly multiple times)
 
-let hash = hasher.finsh();                   // Consume the hasher
+let hash = hasher.finish();                  // Consume the hasher
 println!("Result: {:x}", hash)               // print the result as native hex
 ```
 
