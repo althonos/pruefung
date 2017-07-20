@@ -10,6 +10,7 @@
 [![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=86400&style=flat-square)](http://keepachangelog.com/)
 [![SayThanks](https://img.shields.io/badge/say-thanks!-1EAEDB.svg?maxAge=86400&style=flat-square)](https://saythanks.io/to/althonos)
 
+###### THIS LIBRARY DOES NOT PROVIDE A STABLE API YET !
 
 ## Usage
 
@@ -48,14 +49,14 @@ println!("Result: {:x}", hash)               // print the result as native hex
 
 Latest version of the crate implements the following checksums:
 
-Algorithm                                                         | *since*
------------------------------------------------------------------ | -------
-[Adler32](https://en.wikipedia.org/wiki/Adler-32)                 | `0.1.0`
-[BSD checksum](https://en.wikipedia.org/wiki/BSD_checksum)        | `0.1.0`
-[CRC32](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)    | `0.1.0`
-[CRC32C](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)   | `0.1.0`
-[Fletcher16](https://en.wikipedia.org/wiki/Fletcher%27s_checksum) | `0.1.0`
-[SysV checksum](https://en.wikipedia.org/wiki/SYSV_checksum)      | `0.1.0`
+Algorithm                                                         | *since* | `struct`
+----------------------------------------------------------------- | ------- | --------
+[Adler32](https://en.wikipedia.org/wiki/Adler-32)                 | `0.1.0` | `::adler32::Adler32`
+[BSD checksum](https://en.wikipedia.org/wiki/BSD_checksum)        | `0.1.0` | `::bsd::BSD`
+[CRC32](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)    | `0.1.0` | `::crc32::CRC32`
+[CRC32C](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)   | `0.1.0` | `::crc32c::CRC32C`
+[Fletcher16](https://en.wikipedia.org/wiki/Fletcher%27s_checksum) | `0.1.0` | `::fletcher16::Fletcher16`
+[SysV checksum](https://en.wikipedia.org/wiki/SYSV_checksum)      | `0.1.0` | `::sysv::SysV`
 
 These checksums are **NOT** cryptographically secure. They should not be used
 for something else than data validation against *accidental* modifications:
