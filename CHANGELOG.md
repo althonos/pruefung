@@ -13,9 +13,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
   a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
 ### Changed
-- Implemented unit tests using private macros module
-- Renamed checksum structs to follow Rust naming conventions (acronyms as single
+- Implementation of unit tests to use private macros module
+- Names of checksum structs to follow Rust naming conventions (acronyms as single
   CamelCased word): `BSD` -> `Bsd`, `CRC32(C)` -> `Crc32(c)`, `UNIX` -> `Unix`
+- Code using bitwise operations to use Rust primitive methods where applicable.
+## Removed
+- [`byte-tools`](https://crates.io/crates/byte-tools) and [`block-buffer`](https://crates.io/crates/block-buffers)
+  dependencies, *crate is now free of any requirement !*
+
 
 
 ## 0.1.0 - 2017-07-20

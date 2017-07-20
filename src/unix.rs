@@ -1,4 +1,3 @@
-extern crate byte_tools;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -78,8 +77,6 @@ mod consts {
         0xafb010b1, 0xab710d06, 0xa6322bdf, 0xa2f33668,
         0xbcb4666d, 0xb8757bda, 0xb5365d03, 0xb1f740b4,
     ];
-
-    pub const BASE: u32 = 0xFF;
 }
 
 
@@ -123,7 +120,7 @@ impl Hasher for Unix {
         let mut pos: usize;
 
         while length != 0 {
-            pos = ((sum >> 24) ^ (length & consts::BASE as usize) as u32) as usize;
+            pos = ((sum >> 24) ^ (length as u8) as u32) as usize;
             sum = (sum << 8) ^ consts::LOOKUP_TABLE[pos];
             length >>= 8;
         }

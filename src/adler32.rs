@@ -1,4 +1,3 @@
-extern crate byte_tools;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]

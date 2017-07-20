@@ -1,16 +1,10 @@
-extern crate byte_tools;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
 use core::hash::Hasher;
-
-
-mod consts {
-    pub const SIZE: usize = 16;
-    pub const BASE: u32 = 0xFFFF;
-}
+use core::ops::Rem;
 
 
 #[derive(Copy, Clone)]
@@ -29,14 +23,13 @@ impl Hasher for SysV {
     #[inline]
     fn write(&mut self, input: &[u8]) {
         for &byte in input.iter() {
-            // Add the byte to the checksum modulo 0xFFFF
-            self.state += byte as u32;
-            self.state = (self.state & consts::BASE) + (self.state >> consts::SIZE);
+            // Add the byte to the checksum
+            self.state = self.state.wrapping_add(byte as u32);
         }
     }
     #[inline]
     fn finish(&self) -> u64 {
-        self.state as u64
+        self.state.rem(u16::max_value() as u32) as u64
     }
 }
 

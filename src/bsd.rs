@@ -6,15 +6,9 @@ extern crate digest;
 use core::hash::Hasher;
 
 
-mod consts {
-    pub const SIZE: usize = 16;
-    pub const BASE: u32 = 0xFFFF;
-}
-
-
 #[derive(Copy, Clone)]
 pub struct Bsd {
-    state: u32,
+    state: u16,
 }
 
 
@@ -30,8 +24,7 @@ impl Hasher for Bsd {
     fn write(&mut self, input: &[u8]) {
         for &byte in input.iter() {
             // Rotate one bit right, add next byte an prevent overflow with mask
-            self.state = (self.state >> 1) + ((self.state & 1) << (consts::SIZE - 1));
-            self.state = (self.state + (byte as u32)) & consts::BASE;
+            self.state = self.state.rotate_right(1).wrapping_add(byte as u16);
         }
     }
 

@@ -1,4 +1,3 @@
-extern crate byte_tools;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -91,7 +90,7 @@ pub struct Crc32 {
 
 impl Default for Crc32 {
     fn default() -> Self {
-        Crc32 { state: 0xFFFFFFFF }
+        Crc32 { state: !0u32 }
     }
 }
 
