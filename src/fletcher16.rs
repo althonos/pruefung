@@ -104,33 +104,6 @@ impl digest::FixedOutput for Fletcher16 {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::Input;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let fletcher = super::Fletcher16::new();
-        let output: [u8; 2] = [0, 0];
-
-        assert!(fletcher.finish() == 0);
-        assert!(fletcher.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut fletcher1 = super::Fletcher16::new();
-        let mut fletcher2 = super::Fletcher16::new();
-
-        let data = b"abcdef";
-
-        fletcher1.process(&data[..3]);
-        fletcher1.process(&data[3..]);
-        fletcher2.process(&data[..]);
-
-        assert!(fletcher1.finish() == fletcher2.finish());
-    }
+    unit_test_no_data!(Fletcher16, 0);
+    unit_test_part_data!(Fletcher16);
 }

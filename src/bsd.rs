@@ -75,43 +75,7 @@ impl digest::FixedOutput for BSD {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::Input;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let bsd = super::BSD::new();
-        let output: [u8; 2] = [0, 0];
-
-        assert!(bsd.finish() == 0);
-        assert!(bsd.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn single_byte() {
-        let mut bsd = super::BSD::new();
-        let output: [u8; 2] = [0, 'a' as u8];
-
-        bsd.write("a".as_bytes());
-
-        assert!(bsd.finish() == 'a' as u64);
-        assert!(bsd.fixed_result() ==  GenericArray::clone_from_slice(&output))
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut bsd1 = super::BSD::new();
-        let mut bsd2 = super::BSD::new();
-        let data = b"abcdef";
-
-        bsd1.process(&data[..3]);
-        bsd1.process(&data[3..]);
-        bsd2.process(&data[..]);
-
-        assert!(bsd1.finish() == bsd2.finish());
-    }
+    unit_test_no_data!(BSD, 0);
+    unit_test_part_data!(BSD);
+    unit_test_single_byte!(BSD, b"a", b'a');
 }

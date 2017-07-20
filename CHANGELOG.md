@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
   a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
+### Changed
+- Implemented unit tests using private macros module
 
 
 ## 0.1.0 - 2017-07-20

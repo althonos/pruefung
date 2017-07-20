@@ -73,42 +73,7 @@ impl digest::FixedOutput for SysV {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let sysv = super::SysV::new();
-        let output: [u8; 2] = [0, 0];
-
-        assert!(sysv.finish() == 0);
-        assert!(sysv.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn single_byte() {
-        let mut sysv = super::SysV::new();
-        let output: [u8; 2] = [0, 'a' as u8];
-
-        sysv.write("a".as_bytes());
-
-        assert!(sysv.finish() == 'a' as u64);
-        assert!(sysv.fixed_result() ==  GenericArray::clone_from_slice(&output))
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut sysv1 = super::SysV::new();
-        let mut sysv2 = super::SysV::new();
-        let data = b"abcdef";
-
-        sysv1.write(&data[..3]);
-        sysv1.write(&data[3..]);
-        sysv2.write(&data[..]);
-
-        assert!(sysv1.finish() == sysv2.finish());
-    }
+    unit_test_no_data!(SysV, 0);
+    unit_test_part_data!(SysV);
+    unit_test_single_byte!(SysV, b"a", b'a');
 }

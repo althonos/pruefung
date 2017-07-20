@@ -144,34 +144,6 @@ impl digest::FixedOutput for CRC32 {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::Input;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let crc = super::CRC32::new();
-        let output: [u8; 4] = [0, 0, 0, 0];
-
-
-        assert!(crc.finish() == 0);
-        assert!(crc.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut crc1 = super::CRC32::new();
-        let mut crc2 = super::CRC32::new();
-
-        let data = b"abcdef";
-
-        crc1.process(&data[..3]);
-        crc1.process(&data[3..]);
-        crc2.process(&data[..]);
-
-        assert!(crc1.finish() == crc2.finish());
-    }
+    unit_test_no_data!(CRC32, 0);
+    unit_test_part_data!(CRC32);
 }

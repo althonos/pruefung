@@ -7,6 +7,8 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+#[macro_use]
+mod macros;
 
 pub mod adler32;
 pub mod bsd;

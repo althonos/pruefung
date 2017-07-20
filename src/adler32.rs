@@ -55,7 +55,7 @@ impl Hasher for Adler32 {
             if i < consts::NMAX {break;}
         }
     }
-    
+
     #[inline]
     fn finish(&self) -> u64 {
         (((self.sum2 % consts::BASE) << 16) | self.sum1) as u64
@@ -92,33 +92,6 @@ impl digest::FixedOutput for Adler32 {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::Input;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let adler = super::Adler32::new();
-        let output: [u8; 4] = [0, 0, 0, 1];
-
-        assert!(adler.finish() == 1);
-        assert!(adler.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut adler1 = super::Adler32::new();
-        let mut adler2 = super::Adler32::new();
-
-        let data = b"abcdef";
-
-        adler1.process(&data[..3]);
-        adler1.process(&data[3..]);
-        adler2.process(&data[..]);
-
-        assert!(adler1.finish() == adler2.finish());
-    }
+    unit_test_no_data!(Adler32, 1);
+    unit_test_part_data!(Adler32);
 }

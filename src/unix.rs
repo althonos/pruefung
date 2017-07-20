@@ -161,33 +161,6 @@ impl digest::FixedOutput for UNIX {
 #[cfg(test)]
 #[cfg(feature = "generic")]
 mod tests {
-
-    use core::hash::Hasher;
-    use digest::Digest;
-    use digest::Input;
-    use digest::FixedOutput;
-    use generic_array::GenericArray;
-
-    #[test]
-    fn no_data() {
-        let cksum = super::UNIX::new();
-        let output: [u8; 4] = [0xFF, 0xFF, 0xFF, 0xFF];
-
-        assert!(cksum.finish() == 0xFFFFFFFF);
-        assert!(cksum.fixed_result() == GenericArray::clone_from_slice(&output));
-    }
-
-    #[test]
-    fn multi_part_data() {
-        let mut cksum1 = super::UNIX::new();
-        let mut cksum2 = super::UNIX::new();
-
-        let data = b"abcdef";
-
-        cksum1.process(&data[..3]);
-        cksum1.process(&data[3..]);
-        cksum2.process(&data[..]);
-
-        assert!(cksum1.finish() == cksum2.finish());
-    }
+    unit_test_no_data!(UNIX, !0u32);
+    unit_test_part_data!(UNIX);
 }
