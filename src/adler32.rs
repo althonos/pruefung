@@ -4,6 +4,7 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+use core::hash::Hasher;
 use core::borrow::BorrowMut;
 
 
@@ -30,29 +31,14 @@ impl Default for Adler32 {
 }
 
 
-impl Adler32 {
+impl Hasher for Adler32 {
     #[inline]
-    fn finalize(self) -> [u32; 2]{
-        [
-            self.sum1 % consts::BASE,
-            self.sum2 % consts::BASE,
-        ]
-    }
-
-    #[inline]
-    pub fn hash(self) -> u32 {
-        let sums = self.finalize();
-        (sums[1] << 16) | sums[0]
-    }
-
-    #[inline]
-    pub fn consume(&mut self, input: &[u8]) {
+    fn write(&mut self, input: &[u8]) {
 
         let mut byte_it = input.iter();
         let mut i: usize;
 
         loop {
-
             i = 0;
             // Read bytes by block of NMAX (max value before u16 overflow)
             for &byte in byte_it.borrow_mut().take(consts::NMAX) {
@@ -69,6 +55,11 @@ impl Adler32 {
             if i < consts::NMAX {break;}
         }
     }
+    
+    #[inline]
+    fn finish(&self) -> u64 {
+        (((self.sum2 % consts::BASE) << 16) | self.sum1) as u64
+    }
 }
 
 
@@ -81,7 +72,7 @@ impl digest::BlockInput for Adler32 {
 impl digest::Input for Adler32 {
     #[inline]
     fn process(&mut self, input: &[u8]) {
-        self.consume(input);
+        self.write(input);
     }
 }
 
@@ -92,7 +83,7 @@ impl digest::FixedOutput for Adler32 {
     #[inline]
     fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
         let mut out = generic_array::GenericArray::default();
-        byte_tools::write_u32_be(&mut out, self.hash());
+        byte_tools::write_u32_be(&mut out, self.finish() as u32);
         out
     }
 }
@@ -102,6 +93,7 @@ impl digest::FixedOutput for Adler32 {
 #[cfg(feature = "generic")]
 mod tests {
 
+    use core::hash::Hasher;
     use digest::Digest;
     use digest::Input;
     use digest::FixedOutput;
@@ -112,7 +104,7 @@ mod tests {
         let adler = super::Adler32::new();
         let output: [u8; 4] = [0, 0, 0, 1];
 
-        assert!(adler.hash() == 1);
+        assert!(adler.finish() == 1);
         assert!(adler.fixed_result() == GenericArray::clone_from_slice(&output));
     }
 
@@ -127,6 +119,6 @@ mod tests {
         adler1.process(&data[3..]);
         adler2.process(&data[..]);
 
-        assert!(adler1.hash() == adler2.hash());
+        assert!(adler1.finish() == adler2.finish());
     }
 }

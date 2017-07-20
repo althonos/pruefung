@@ -4,6 +4,7 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+use core::hash::Hasher;
 use core::borrow::BorrowMut;
 
 
@@ -32,22 +33,16 @@ impl Default for Fletcher16 {
 
 impl Fletcher16 {
     #[inline]
-    fn finalize(self) -> [u16; 2]{
-        [
-            (self.sum1 & consts::BASE) + (self.sum1 >> 8),
-            (self.sum2 & consts::BASE) + (self.sum2 >> 8),
-        ]
+    fn finalize(&self) -> [u16; 2] {
+        [(self.sum1 & consts::BASE) + (self.sum1 >> 8),
+         (self.sum2 & consts::BASE) + (self.sum2 >> 8)]
     }
+}
 
+
+impl Hasher for Fletcher16 {
     #[inline]
-    pub fn hash(self) -> u16 {
-        let sums = self.finalize();
-        (sums[1] << 8) | sums[0]
-    }
-
-    #[inline]
-    pub fn consume(&mut self, input: &[u8]) {
-
+    fn write (&mut self, input: &[u8]) {
         let mut byte_it = input.iter();
         let mut i: usize;
 
@@ -69,6 +64,12 @@ impl Fletcher16 {
             if i < consts::NMAX {break;}
         }
     }
+
+    #[inline]
+    fn finish(&self) -> u64 {
+        let sums = self.finalize();
+        ((sums[1] << 8) | sums[0]) as u64
+    }
 }
 
 
@@ -81,7 +82,7 @@ impl digest::BlockInput for Fletcher16 {
 impl digest::Input for Fletcher16 {
     #[inline]
     fn process(&mut self, input: &[u8]) {
-        self.consume(input);
+        self.write(input);
     }
 }
 
@@ -104,6 +105,7 @@ impl digest::FixedOutput for Fletcher16 {
 #[cfg(feature = "generic")]
 mod tests {
 
+    use core::hash::Hasher;
     use digest::Digest;
     use digest::Input;
     use digest::FixedOutput;
@@ -114,7 +116,7 @@ mod tests {
         let fletcher = super::Fletcher16::new();
         let output: [u8; 2] = [0, 0];
 
-        assert!(fletcher.hash() == 0);
+        assert!(fletcher.finish() == 0);
         assert!(fletcher.fixed_result() == GenericArray::clone_from_slice(&output));
     }
 
@@ -129,6 +131,6 @@ mod tests {
         fletcher1.process(&data[3..]);
         fletcher2.process(&data[..]);
 
-        assert!(fletcher1.hash() == fletcher2.hash());
+        assert!(fletcher1.finish() == fletcher2.finish());
     }
 }

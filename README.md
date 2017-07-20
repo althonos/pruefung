@@ -21,54 +21,54 @@ pruefung = "^0.1.0"
 Check out the **Sums** section to see the minimal required version you need
 depending on the algorithm you wish to use.
 
-All the checksums are implemented using the same logic
-as the [hashes](https://github.com/RustCrypto/hashes)
-crate of the [RustCrypto](https://github.com/RustCrypto)
-project, implementing the [`digest::Digest`](https://docs.rs/digest/0.6.1/digest/trait.Digest.html) trait.
+All the checksums are implemented using the same logic as the [hashes] crate of
+the [RustCrypto] project, implementing the [`digest::Digest`] and the
+[`core::hasher::Hasher`] traits.
 
 Then, to compute a hash, for instance a `CRC32` (Ethernet standard):
 
 ```rust
 extern crate pruefung;
+use std::hash::Hasher;
+
 let mut hasher = pruefung::crc32::CRC32();   // Instantiate a hasher
 let data = b"Hello, world !";
 
-hasher.input(data);                          // Feed the hasher
-hasher.input("String data".as_bytes());      // (possibly multiple times)
+hasher.write(data);                          // Feed the hasher
+hasher.write("String data".as_bytes());      // (possibly multiple times)
 
-let hash = hasher.result();                  // Consume the hasher
+let hash = hasher.finsh();                   // Consume the hasher
 println!("Result: {:x}", hash)               // print the result as native hex
 ```
+
 
 ## Sums
 
 Latest version of the crate implements the following checksums:
 
-
-Algorithm       | since version
---------------- | -------------
-[Adler32]       | `0.1.0`
-[BSD checksum]  | `0.1.0`
-[CRC32]         | `0.1.0`
-[CRC32C]        | `0.1.0`
-[Fletcher16]    | `0.1.0`
-[SysV checksum] | `0.1.0`
-
-[Adler32]: https://en.wikipedia.org/wiki/Adler-32
-[BSD checksum]: https://en.wikipedia.org/wiki/BSD_checksum
-[CRC32]: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
-[CRC32C]: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
-[Fletcher16]: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
-[SysV checksum]: https://en.wikipedia.org/wiki/SYSV_checksum
+Algorithm                                                         | *since*
+----------------------------------------------------------------- | -------
+[Adler32](https://en.wikipedia.org/wiki/Adler-32)                 | `0.1.0`
+[BSD checksum](https://en.wikipedia.org/wiki/BSD_checksum)        | `0.1.0`
+[CRC32](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)    | `0.1.0`
+[CRC32C](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)   | `0.1.0`
+[Fletcher16](https://en.wikipedia.org/wiki/Fletcher%27s_checksum) | `0.1.0`
+[SysV checksum](https://en.wikipedia.org/wiki/SYSV_checksum)      | `0.1.0`
 
 These checksums are **NOT** cryptographically secure. They should not be used
 for something else than data validation against *accidental* modifications:
 an attacker could easily *forge* a file to pass any of these checksums ! For
-secure checksums, look at the [hashes](https://github.com/RustCrypto/hashes)
-implemented by the RustCrypto developers.
+secure checksums, look at the [hashes] implemented by the [RustCrypto] team.
+
 
 ## Why `pruefung` ?
 
 *I was in Switzerland when I started this project. Yet, I don't really speak
 german. But a slug version of `zyklische-redundanzprüfung` seemed like a nice
-name, instead of another checksum, cksum, checksums, etc, crc crate.*
+name, instead of another checksum, cksum, checksums, crc, etc. crate.*
+
+
+[hashes]: https://github.com/RustCrypto/hashes
+[RustCrypto]: https://github.com/RustCrypto
+[`digest::Digest`]: https://docs.rs/digest/0.6.1/digest/trait.Digest.html
+[`core::hasher::Hasher`]: https://doc.rust-lang.org/core/hash/trait.Hasher.html

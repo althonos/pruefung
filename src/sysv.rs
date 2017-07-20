@@ -4,6 +4,8 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+use core::hash::Hasher;
+
 
 mod consts {
     pub const SIZE: usize = 16;
@@ -25,21 +27,18 @@ impl Default for SysV {
     }
 }
 
-
-impl SysV {
-
+impl Hasher for SysV {
     #[inline]
-    pub fn hash(self) -> u16 {
-        self.state as u16
-    }
-
-    #[inline]
-    pub fn consume(&mut self, input: &[u8]) {
+    fn write(&mut self, input: &[u8]) {
         for &byte in input.iter() {
             // Add the byte to the checksum modulo 0xFFFF
             self.state += byte as u32;
             self.state = (self.state & consts::BASE) + (self.state >> consts::SIZE);
         }
+    }
+    #[inline]
+    fn finish(&self) -> u64 {
+        self.state as u64
     }
 }
 
@@ -53,7 +52,7 @@ impl digest::BlockInput for SysV {
 impl digest::Input for SysV {
     #[inline]
     fn process(&mut self, input: &[u8]) {
-        self.consume(input);
+        self.write(input);
     }
 }
 
@@ -75,8 +74,8 @@ impl digest::FixedOutput for SysV {
 #[cfg(feature = "generic")]
 mod tests {
 
+    use core::hash::Hasher;
     use digest::Digest;
-    use digest::Input;
     use digest::FixedOutput;
     use generic_array::GenericArray;
 
@@ -85,7 +84,7 @@ mod tests {
         let sysv = super::SysV::new();
         let output: [u8; 2] = [0, 0];
 
-        assert!(sysv.hash() == 0);
+        assert!(sysv.finish() == 0);
         assert!(sysv.fixed_result() == GenericArray::clone_from_slice(&output));
     }
 
@@ -94,9 +93,9 @@ mod tests {
         let mut sysv = super::SysV::new();
         let output: [u8; 2] = [0, 'a' as u8];
 
-        sysv.consume("a".as_bytes());
+        sysv.write("a".as_bytes());
 
-        assert!(sysv.hash() == 'a' as u16);
+        assert!(sysv.finish() == 'a' as u64);
         assert!(sysv.fixed_result() ==  GenericArray::clone_from_slice(&output))
     }
 
@@ -106,10 +105,10 @@ mod tests {
         let mut sysv2 = super::SysV::new();
         let data = b"abcdef";
 
-        sysv1.process(&data[..3]);
-        sysv1.process(&data[3..]);
-        sysv2.process(&data[..]);
+        sysv1.write(&data[..3]);
+        sysv1.write(&data[3..]);
+        sysv2.write(&data[..]);
 
-        assert!(sysv1.hash() == sysv2.hash());
+        assert!(sysv1.finish() == sysv2.finish());
     }
 }

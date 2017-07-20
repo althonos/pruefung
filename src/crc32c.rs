@@ -4,6 +4,8 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+use core::hash::Hasher;
+
 
 mod consts {
     pub const LOOKUP_TABLE: [u32; 256] = [
@@ -94,21 +96,9 @@ impl Default for CRC32C {
     }
 }
 
-
-impl CRC32C {
+impl Hasher for CRC32C {
     #[inline]
-    fn finalize(self) -> u32 {
-        self.state
-    }
-
-    #[inline]
-    pub fn hash(self) -> u32 {
-        self.state
-    }
-
-    #[inline]
-    pub fn consume(&mut self, input: &[u8]) {
-
+    fn write(&mut self, input: &[u8]) {
         let mut crc = !self.state;
         let mut pos: u32;
 
@@ -119,8 +109,12 @@ impl CRC32C {
 
         self.state = !crc;
     }
-}
 
+    #[inline]
+    fn finish(&self) -> u64 {
+        self.state as u64
+    }
+}
 
 #[cfg(feature = "generic")]
 impl digest::BlockInput for CRC32C {
@@ -131,7 +125,7 @@ impl digest::BlockInput for CRC32C {
 impl digest::Input for CRC32C {
     #[inline]
     fn process(&mut self, input: &[u8]) {
-        self.consume(input);
+        self.write(input);
     }
 }
 
@@ -142,7 +136,7 @@ impl digest::FixedOutput for CRC32C {
     #[inline]
     fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
         let mut out = generic_array::GenericArray::default();
-        byte_tools::write_u32_be(&mut out, self.finalize());
+        byte_tools::write_u32_be(&mut out, self.finish() as u32);
         out
     }
 }
@@ -152,6 +146,7 @@ impl digest::FixedOutput for CRC32C {
 #[cfg(feature = "generic")]
 mod tests {
 
+    use core::hash::Hasher;
     use digest::Digest;
     use digest::Input;
     use digest::FixedOutput;
@@ -162,9 +157,7 @@ mod tests {
         let crc = super::CRC32C::new();
         let output: [u8; 4] = [0, 0, 0, 0];
 
-
-        assert!(crc.hash() == 0);
-        assert!(crc.finalize() == 0);
+        assert!(crc.finish() == 0);
         assert!(crc.fixed_result() == GenericArray::clone_from_slice(&output));
     }
 
@@ -179,6 +172,6 @@ mod tests {
         crc1.process(&data[3..]);
         crc2.process(&data[..]);
 
-        assert!(crc1.hash() == crc2.hash());
+        assert!(crc1.finish() == crc2.finish());
     }
 }

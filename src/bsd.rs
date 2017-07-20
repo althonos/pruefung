@@ -4,6 +4,8 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+use core::hash::Hasher;
+
 
 mod consts {
     pub const SIZE: usize = 16;
@@ -26,20 +28,19 @@ impl Default for BSD {
 }
 
 
-impl BSD {
-
+impl Hasher for BSD {
     #[inline]
-    pub fn hash(self) -> u16 {
-        self.state as u16
-    }
-
-    #[inline]
-    pub fn consume(&mut self, input: &[u8]) {
+    fn write(&mut self, input: &[u8]) {
         for &byte in input.iter() {
             // Rotate one bit right, add next byte an prevent overflow with mask
             self.state = (self.state >> 1) + ((self.state & 1) << (consts::SIZE - 1));
             self.state = (self.state + (byte as u32)) & consts::BASE;
         }
+    }
+
+    #[inline]
+    fn finish(&self) -> u64 {
+        self.state as u64
     }
 }
 
@@ -53,7 +54,7 @@ impl digest::BlockInput for BSD {
 impl digest::Input for BSD {
     #[inline]
     fn process(&mut self, input: &[u8]) {
-        self.consume(input);
+        self.write(input);
     }
 }
 
@@ -75,6 +76,7 @@ impl digest::FixedOutput for BSD {
 #[cfg(feature = "generic")]
 mod tests {
 
+    use core::hash::Hasher;
     use digest::Digest;
     use digest::Input;
     use digest::FixedOutput;
@@ -85,7 +87,7 @@ mod tests {
         let bsd = super::BSD::new();
         let output: [u8; 2] = [0, 0];
 
-        assert!(bsd.hash() == 0);
+        assert!(bsd.finish() == 0);
         assert!(bsd.fixed_result() == GenericArray::clone_from_slice(&output));
     }
 
@@ -94,9 +96,9 @@ mod tests {
         let mut bsd = super::BSD::new();
         let output: [u8; 2] = [0, 'a' as u8];
 
-        bsd.consume("a".as_bytes());
+        bsd.write("a".as_bytes());
 
-        assert!(bsd.hash() == 'a' as u16);
+        assert!(bsd.finish() == 'a' as u64);
         assert!(bsd.fixed_result() ==  GenericArray::clone_from_slice(&output))
     }
 
@@ -110,6 +112,6 @@ mod tests {
         bsd1.process(&data[3..]);
         bsd2.process(&data[..]);
 
-        assert!(bsd1.hash() == bsd2.hash());
+        assert!(bsd1.finish() == bsd2.finish());
     }
 }

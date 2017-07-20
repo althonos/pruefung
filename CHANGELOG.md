@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Added
-- Implementation of the following sums:
+- Following sums with Hasher & Digest implementations:
     * Adler32
     * BSD checksum (UNIX `sum`)
     * CRC32 (Ethernet variant)
