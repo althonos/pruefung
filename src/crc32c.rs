@@ -8,6 +8,7 @@ use core::hash::Hasher;
 
 
 mod consts {
+    #[cfg_attr(rustfmt, rustfmt_skip)]
     pub const LOOKUP_TABLE: [u32; 256] = [
         0x00000000, 0xF26B8303, 0xE13B70F7, 0x1350F3F4,
         0xC79A971F, 0x35F1141C, 0x26A1E7E8, 0xD4CA64EB,
@@ -90,9 +91,7 @@ pub struct Crc32c {
 
 impl Default for Crc32c {
     fn default() -> Self {
-        Crc32c {
-            state: 0xFFFFFFFF,
-        }
+        Crc32c { state: 0xFFFFFFFF }
     }
 }
 

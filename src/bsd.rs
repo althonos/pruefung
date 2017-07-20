@@ -20,9 +20,7 @@ pub struct Bsd {
 
 impl Default for Bsd {
     fn default() -> Self {
-        Bsd {
-            state: 0,
-        }
+        Bsd { state: 0 }
     }
 }
 

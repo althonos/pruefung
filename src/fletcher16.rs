@@ -23,10 +23,7 @@ pub struct Fletcher16 {
 
 impl Default for Fletcher16 {
     fn default() -> Self {
-        Fletcher16 {
-            sum1: 0,
-            sum2: 0
-        }
+        Fletcher16 { sum1: 0, sum2: 0 }
     }
 }
 
@@ -34,15 +31,17 @@ impl Default for Fletcher16 {
 impl Fletcher16 {
     #[inline]
     fn finalize(&self) -> [u16; 2] {
-        [(self.sum1 & consts::BASE) + (self.sum1 >> 8),
-         (self.sum2 & consts::BASE) + (self.sum2 >> 8)]
+        [
+            (self.sum1 & consts::BASE) + (self.sum1 >> 8),
+            (self.sum2 & consts::BASE) + (self.sum2 >> 8),
+        ]
     }
 }
 
 
 impl Hasher for Fletcher16 {
     #[inline]
-    fn write (&mut self, input: &[u8]) {
+    fn write(&mut self, input: &[u8]) {
         let mut byte_it = input.iter();
         let mut i: usize;
 
@@ -61,7 +60,9 @@ impl Hasher for Fletcher16 {
             self.sum2 = (self.sum2 & consts::BASE) + (self.sum2 >> 8);
 
             // If the last block was read, stop
-            if i < consts::NMAX {break;}
+            if i < consts::NMAX {
+                break;
+            }
         }
     }
 

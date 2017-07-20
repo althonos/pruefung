@@ -23,10 +23,7 @@ pub struct Adler32 {
 
 impl Default for Adler32 {
     fn default() -> Self {
-        Adler32 {
-            sum1: 1,
-            sum2: 0,
-        }
+        Adler32 { sum1: 1, sum2: 0 }
     }
 }
 
@@ -52,7 +49,9 @@ impl Hasher for Adler32 {
             self.sum2 %= consts::BASE;
 
             // If the last block was read, stop
-            if i < consts::NMAX {break;}
+            if i < consts::NMAX {
+                break;
+            }
         }
     }
 
@@ -63,31 +62,6 @@ impl Hasher for Adler32 {
 }
 
 implement_digest!(Adler32, U32768, U4);
-
-// #[cfg(feature = "generic")]
-// impl digest::BlockInput for Adler32 {
-//     type BlockSize = generic_array::typenum::U32768;
-// }
-//
-// #[cfg(feature = "generic")]
-// impl digest::Input for Adler32 {
-//     #[inline]
-//     fn process(&mut self, input: &[u8]) {
-//         self.write(input);
-//     }
-// }
-//
-// #[cfg(feature = "generic")]
-// impl digest::FixedOutput for Adler32 {
-//     type OutputSize = generic_array::typenum::U4;
-//
-//     #[inline]
-//     fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
-//         let mut out = generic_array::GenericArray::default();
-//         byte_tools::write_u32_be(&mut out, self.finish() as u32);
-//         out
-//     }
-// }
 
 
 #[cfg(test)]

@@ -21,9 +21,7 @@ pub struct SysV {
 
 impl Default for SysV {
     fn default() -> Self {
-        SysV {
-            state: 0,
-        }
+        SysV { state: 0 }
     }
 }
 
