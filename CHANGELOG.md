@@ -15,11 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     * CRC32 (Ethernet variant)
     * CRC32C (Castagnoli polynomial variant)
     * Fletcher16
-    * SysV checksum
-- Tests and benchmarks generated with the
-  [`crypto-tests`](https://crates.io/crates/crypto-tests) crate
-- A basic README inspired by the README of the
-  [hashes](https://github.com/RustCrypto/hashes) project
+    * SysV checksum (UNIX `sum -s`)
+- Tests and benchmarks generated with the [`crypto-tests`](https://crates.io/crates/crypto-tests) crate
+- A basic README inspired by the README of the [`hashes`](https://github.com/RustCrypto/hashes) project
 - This CHANGELOG file
 
 [Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/0.1.0...HEAD
