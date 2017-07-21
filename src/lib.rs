@@ -12,7 +12,6 @@ mod macros;
 pub mod adler32;
 pub mod bsd;
 pub mod crc32;
-pub mod crc32c;
 pub mod fletcher16;
 pub mod unix;
 pub mod sysv;
