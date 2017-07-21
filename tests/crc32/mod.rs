@@ -4,7 +4,14 @@ use crypto_tests::hash::{Test, main_test, one_million_a};
 
 #[test]
 fn crc32_main() {
-    let tests = new_tests!("crc32/1", "crc32/2", "crc32/3", "crc32/4", "crc32/5", "crc32/6");
+    let tests = new_tests!(
+        "crc32/1",
+        "crc32/2",
+        "crc32/3",
+        "crc32/4",
+        "crc32/5",
+        "crc32/6"
+    );
     main_test::<pruefung::crc32::Crc32>(&tests);
 }
 
@@ -16,7 +23,14 @@ fn crc32_1million_a() {
 
 #[test]
 fn crc32c_main() {
-    let tests = new_tests!("crc32c/1", "crc32c/2", "crc32c/3", "crc32c/4", "crc32c/5", "crc32c/6");
+    let tests = new_tests!(
+        "crc32c/1",
+        "crc32c/2",
+        "crc32c/3",
+        "crc32c/4",
+        "crc32c/5",
+        "crc32c/6"
+    );
     main_test::<pruefung::crc32::Crc32c>(&tests);
 }
 

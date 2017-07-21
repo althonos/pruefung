@@ -1,5 +1,4 @@
-
-#[macro_export]
+#[allow(unused)]
 macro_rules! output_array {
 
     ($Hasher:ident, $output:expr, $array_name:ident) => (
@@ -24,8 +23,7 @@ macro_rules! output_array {
 
 
 
-
-#[macro_export]
+#[allow(unused)]
 macro_rules! unit_test_no_data {
     ($Hasher:ident, $output:expr) => (
 
@@ -52,8 +50,7 @@ macro_rules! unit_test_no_data {
     )
 }
 
-
-#[macro_export]
+#[allow(unused)]
 macro_rules! unit_test_part_data {
 
     ($Hasher:ident) => (
@@ -82,7 +79,7 @@ macro_rules! unit_test_part_data {
     )
 }
 
-#[macro_export]
+#[allow(unused)]
 macro_rules! unit_test_single_byte {
 
     ($Hasher:ident, $input:expr, $output:expr) => (
