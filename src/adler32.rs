@@ -1,3 +1,7 @@
+//! [Adler32][1] checksum implementation.
+//!
+//! [1]: https://en.wikipedia.org/wiki/Adler-32
+
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -13,6 +17,7 @@ mod consts {
 }
 
 
+/// The Adler32 hasher.
 #[derive(Copy, Clone)]
 pub struct Adler32 {
     sum1: u32,
@@ -30,10 +35,8 @@ impl Default for Adler32 {
 impl Hasher for Adler32 {
     #[inline]
     fn write(&mut self, input: &[u8]) {
-
         let mut byte_it = input.iter();
         let mut i: usize;
-
         loop {
             i = 0;
             // Read bytes by block of NMAX (max value before u16 overflow)
@@ -42,11 +45,9 @@ impl Hasher for Adler32 {
                 self.sum2 += self.sum1;
                 i += 1;
             }
-
             // Reduce sums to u16
             self.sum1 %= consts::BASE;
             self.sum2 %= consts::BASE;
-
             // If the last block was read, stop
             if i < consts::NMAX {
                 break;
@@ -59,6 +60,7 @@ impl Hasher for Adler32 {
         (((self.sum2 % consts::BASE) << 16) | self.sum1) as u64
     }
 }
+
 
 implement_digest!(Adler32, U32768, U4);
 

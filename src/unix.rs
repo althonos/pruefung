@@ -1,3 +1,9 @@
+//![UNIX][1] cyclic redundancy check implementation.
+//!
+//! Known in UNIX as the `cksum` command.
+//!
+//! [1]: https://en.wikipedia.org/wiki/Cksum
+
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -80,6 +86,7 @@ mod consts {
 }
 
 
+/// The UNIX hasher.
 #[derive(Copy, Clone)]
 pub struct Unix {
     state: u32,
@@ -105,7 +112,7 @@ impl Hasher for Unix {
 
         for &byte in input.iter() {
             pos = ((self.state >> 24) ^ byte as u32) as usize;
-            self.state = (self.state << 8) ^ consts::LOOKUP_TABLE[pos]
+            self.state = (self.state << 8) ^ consts::LOOKUP_TABLE[pos];
         }
 
         self.length += input.len();
@@ -129,7 +136,9 @@ impl Hasher for Unix {
     }
 }
 
+
 implement_digest!(Unix, U1024, U4);
+
 
 #[cfg(test)]
 #[cfg(feature = "generic")]

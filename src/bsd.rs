@@ -1,3 +1,10 @@
+//! [BSD][1] checksum implementation.
+//!
+//! Known in UNIX as the `sum` command.
+//!
+//! [1]: https://en.wikipedia.org/wiki/BSD_checksum
+
+
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -6,6 +13,7 @@ extern crate digest;
 use core::hash::Hasher;
 
 
+/// The BSD hasher.
 #[derive(Copy, Clone)]
 pub struct Bsd {
     state: u16,
@@ -23,11 +31,10 @@ impl Hasher for Bsd {
     #[inline]
     fn write(&mut self, input: &[u8]) {
         for &byte in input.iter() {
-            // Rotate one bit right, add next byte an prevent overflow with mask
+            // Rotate one bit right, add next byte and prevent
             self.state = self.state.rotate_right(1).wrapping_add(byte as u16);
         }
     }
-
     #[inline]
     fn finish(&self) -> u64 {
         self.state as u64

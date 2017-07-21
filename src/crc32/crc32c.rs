@@ -1,3 +1,9 @@
+//! [Castagnoli][1] [CRC32][2] implementation.
+//!
+//! [1]: https://doi.org/10.1109/26.231911
+//! [2]: https://en.wikipedia.org/wiki/CRC32
+
+
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -82,6 +88,7 @@ mod consts {
 }
 
 
+/// The CRC32C hasher (Castagnoli variant).
 #[derive(Copy, Clone)]
 pub struct Crc32c {
     state: u32,

@@ -1,3 +1,8 @@
+//! [CRC32][1] implementations.
+//!
+//! [1]: https://en.wikipedia.org/wiki/CRC32
+
+
 pub mod crc32;
 pub mod crc32c;
 

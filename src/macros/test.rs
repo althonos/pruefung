@@ -1,3 +1,9 @@
+//! Test macros.
+
+/// Generate the code to fill a [`GenericArray`][1] with the result of a [`Hasher`][2].
+///
+/// [1]: https://docs.rs/generic-array/*/generic_array/struct.GenericArray.html
+/// [2]: https://doc.rust-lang.org/core/hash/trait.Hasher.html
 #[allow(unused)]
 macro_rules! output_array {
 
