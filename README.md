@@ -67,7 +67,7 @@ Latest version of the crate implements the following checksums:
 Algorithm           | *since* | *implemented as*
 ------------------- | ------- | --------
 [Adler32][7]        | `0.1.0` | [`::adler32::Adler32`][15]
-[BSD checksum][8]   | `0.1.0` | [`::bsd::Bsd`][16]
+[BSD checksum][8]   | `0.2.0` | [`::bsd::Bsd`][16]
 [CRC32][5]          | `0.2.0` | [`::crc::crc32::CRC32`][17]
 [CRC32C][5]         | `0.2.0` | [`::crc::crc32::CRC32C`][18]
 [Fletcher16][9]     | `0.1.0` | [`::fletcher16::Fletcher16`][19]
