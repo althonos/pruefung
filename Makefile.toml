@@ -14,3 +14,8 @@ args          = ["audit"]
 
 [tasks.codecov]
 dependencies = ["coverage"]
+
+[tasks.chandler]
+install_script = ["gem install chandler -n target/gems"]
+command = "target/gems/chandler"
+args = ["push", "--github=althonos/pruefung"]

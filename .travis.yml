@@ -20,7 +20,6 @@ env:
 before_install:
   - if [[ ! -e "$HOME/.cargo/bin/cargo-make" ]]; then cargo install --debug cargo-make; fi
   - export PATH=$HOME/.cargo/bin:$PATH
-  - gem install chandler -n .
 
 install:
   - cargo make build
@@ -30,7 +29,7 @@ script:
 
 after_script:
   - cargo make audit
-  - ./chandler push
+  - cargo make chandler
 
 # after_success:
 #   - cargo make codecov
