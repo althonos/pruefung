@@ -31,8 +31,8 @@ after_script:
   - cargo make audit
   - cargo make chandler
 
-# after_success:
-#   - cargo make codecov
+after_success:
+  - cargo make codecov
 
 deploy:
   provider: script

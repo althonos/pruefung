@@ -1,11 +1,8 @@
 [tasks.coverage]
-install_crate  = "cargo-tarpaulin"
-command        = "cargo"
-args           = ["tarpaulin"]
-windows_alias  = "empty"
-mac_alias      = "empty"
-install_script = []
-script         = []
+alias = "coverage-tarpaulin"
+
+[tasks.coverage-tarpaulin.linux]
+args = ["tarpaulin", "--ciserver=travis-ci"]
 
 [tasks.audit]
 install_crate = "cargo-audit"
