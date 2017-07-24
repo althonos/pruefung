@@ -1,6 +1,7 @@
 //! [Ethernet][1] [CRC32][2] implementation.
 //!
-//! [1]: https://doi.org/10.1145/1015591.1015594
+//!
+//! [1]: https://en.wikipedia.org/wiki/Ethernet
 //! [2]: https://en.wikipedia.org/wiki/CRC32
 
 #[cfg(feature = "generic")]

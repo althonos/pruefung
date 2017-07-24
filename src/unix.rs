@@ -1,6 +1,11 @@
-//![UNIX][1] cyclic redundancy check implementation.
+//! [UNIX][1] cyclic redundancy check implementation.
 //!
 //! Known in UNIX as the `cksum` command.
+//!
+//! # Reference
+//!
+//! 1. *POSIX `cksum` manual*. The Open Group, 2016. [The Open Group Base Specifications Issue 7]
+//!    (http://pubs.opengroup.org/onlinepubs/9699919799/utilities/cksum.html).
 //!
 //! [1]: https://en.wikipedia.org/wiki/Cksum
 
