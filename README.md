@@ -24,9 +24,10 @@ pruefung = "^0.1.0"
 Check out the **Sums** section to see the minimal required version you need
 depending on the algorithm you wish to use.
 
-All the checksums are implemented using the same logic as the [hashes] crate of
-the [RustCrypto] project, implementing the [`digest::Digest`] and the
-[`core::hasher::Hasher`] traits.
+All the checksums are implemented using the same logic as the [hashes][1] crate
+of the [RustCrypto][2] project, implementing the [`digest::Digest`][3], and the
+[`core::hasher::Hasher`][4] traits when possible (less than 64 bits in the
+output).
 
 Then, to compute a hash, for instance a `CRC32` (Ethernet standard):
 
@@ -42,6 +43,19 @@ hasher.write("String data".as_bytes());      // (possibly multiple times)
 
 let hash = hasher.finish();                  // Consume the hasher
 println!("Result: {:x}", hash)               // print the result as native hex
+```
+
+
+## Dependencies
+
+The crate itself is [`no_std`][5], but provides [`digest::Digest`][3] implementations
+for convenience and integration with the [`hashes`][1] crate. Those bindings can
+be scrapped off however by disabling the default features of the crates, adding
+the following line to yout `Cargo.toml`:
+```
+[dependencies.pruefung]
+version = "^0.1.0"
+default-features = false
 ```
 
 
@@ -61,7 +75,8 @@ Algorithm                                                         | *since* | `s
 These checksums are **NOT** cryptographically secure. They should not be used
 for something else than data validation against *accidental* modifications:
 an attacker could easily *forge* a file to pass any of these checksums ! For
-secure checksums, look at the [hashes] implemented by the [RustCrypto] team.
+secure checksums, look at the [hashes][1] implemented by the [RustCrypto][2]
+team.
 
 
 ## Why `pruefung` ?
@@ -71,7 +86,8 @@ german. But a slug version of `zyklische-redundanzprüfung` seemed like a nice
 name, instead of another checksum, cksum, checksums, crc, etc. crate.*
 
 
-[hashes]: https://github.com/RustCrypto/hashes
-[RustCrypto]: https://github.com/RustCrypto
-[`digest::Digest`]: https://docs.rs/digest/0.6.1/digest/trait.Digest.html
-[`core::hasher::Hasher`]: https://doc.rust-lang.org/core/hash/trait.Hasher.html
+[1]: https://github.com/RustCrypto/hashes
+[2]: https://github.com/RustCrypto
+[3]: https://docs.rs/digest/*/digest/trait.Digest.html
+[4]: https://doc.rust-lang.org/core/hash/trait.Hasher.html
+[5]: https://doc.rust-lang.org/1.11.0/book/no-stdlib.html
