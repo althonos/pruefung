@@ -17,13 +17,13 @@ mod crc32 {
                 "crc32/5",
                 "crc32/6"
             );
-            crypto_tests::hash::main_test::<pruefung::crc32::Crc32>(&tests);
+            crypto_tests::hash::main_test::<pruefung::crc::crc32::Crc32>(&tests);
         }
 
         #[test]
         fn one_million_a() {
             let output = include_bytes!("data/crc32/one_million_a.output.bin");
-            crypto_tests::hash::one_million_a::<pruefung::crc32::Crc32>(output);
+            crypto_tests::hash::one_million_a::<pruefung::crc::crc32::Crc32>(output);
         }
 
     }
@@ -45,13 +45,13 @@ mod crc32 {
                 "crc32c/5",
                 "crc32c/6"
             );
-            crypto_tests::hash::main_test::<pruefung::crc32::Crc32c>(&tests);
+            crypto_tests::hash::main_test::<pruefung::crc::crc32::Crc32c>(&tests);
         }
 
         #[test]
         fn one_million_a() {
             let output = include_bytes!("data/crc32c/one_million_a.output.bin");
-            crypto_tests::hash::one_million_a::<pruefung::crc32::Crc32c>(output);
+            crypto_tests::hash::one_million_a::<pruefung::crc::crc32::Crc32c>(output);
         }
 
     }
