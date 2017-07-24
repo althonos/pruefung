@@ -4,11 +4,11 @@
 //!
 //! The hashers implemented in this module follow this naming convention:
 //!
-//!   * `FnvXXXX` is the [FNV-1][2] algorithm with a XXXX bits output
-//!   * `FnvXXXXa` is the [FNV-1a][3] algorithm with a XXXX bits output
-//!   * `FnvXXXXz` is the [FNV-0][4] algorithm with a XXXX bits output.
+//!   * `FnvXX` is the [FNV-1][2] algorithm with a XXXX bits output
+//!   * `FnvXXa` is the [FNV-1a][3] algorithm with a XXXX bits output
+//!   * `FnvXXz` is the [FNV-0][4] algorithm with a XXXX bits output.
 //!
-//! where `XXXX` can be 32 bits.
+//! where `XXXX` can be 32 or 64 bits.
 //!
 //! This convention tries to have a FNV API that follows the same logic as
 //! the CRC API, as well as avoiding ugly snake case in struct names (Rust and I
@@ -26,7 +26,12 @@
 //! [4]: https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-0_hash_.28deprecated.29
 
 pub mod fnv32;
+pub mod fnv64;
 
 pub use self::fnv32::Fnv32;
 pub use self::fnv32::Fnv32a;
 pub use self::fnv32::Fnv32z;
+
+pub use self::fnv64::Fnv64;
+pub use self::fnv64::Fnv64a;
+pub use self::fnv64::Fnv64z;

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Following sum with Hasher & Digest implementations:
     * Unix (UNIX `cksum`)
     * FNV 32 in several variants: `FNV1-32`, `FNV1a-32` and `FNV0-32`
+    * FNV 64 in several variants: `FNV1-64`, `FNV1a-64` and `FNV0-64`
 - Paper & reference about CRC32, CRC32c, Adler32 and UNIX checksum.
 ### Fixed
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
