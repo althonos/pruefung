@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [0.2.0] - 2017-07-24
 ### Added
 - Following sum with Hasher & Digest implementations:
     * Unix (UNIX `cksum`)
@@ -40,4 +43,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - This CHANGELOG file
 
 
-[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/althonos/pruefung/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/althonos/pruefung/compare/0.1.0...0.2.0
