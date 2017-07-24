@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Following sum with Hasher & Digest implementations:
     * Unix (UNIX `cksum`)
+    * FNV 32 in several variants: `FNV1-32`, `FNV1a-32` and `FNV0-32`
 ### Fixed
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
   a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
@@ -17,10 +18,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Names of checksum structs to follow Rust naming conventions (acronyms as single
   CamelCased word): `BSD` -> `Bsd`, `CRC32(C)` -> `Crc32(c)`, `UNIX` -> `Unix`
 - Code using bitwise operations to use Rust primitive methods where applicable.
+- Structure of the library to nest the `crc32` module inside a `crc` module.
 ## Removed
 - [`byte-tools`](https://crates.io/crates/byte-tools) and [`block-buffer`](https://crates.io/crates/block-buffers)
   dependencies, *crate is now free of any requirement !*
-
 
 
 ## 0.1.0 - 2017-07-20
@@ -35,5 +36,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests and benchmarks generated with the [`crypto-tests`](https://crates.io/crates/crypto-tests) crate
 - A basic README inspired by the README of the [`hashes`](https://github.com/RustCrypto/hashes) project
 - This CHANGELOG file
+
 
 [Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/0.1.0...HEAD

@@ -23,5 +23,6 @@ pub mod adler32;
 pub mod bsd;
 pub mod crc;
 pub mod fletcher16;
+pub mod fnv;
 pub mod unix;
 pub mod sysv;
