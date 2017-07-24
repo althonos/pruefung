@@ -1,3 +1,7 @@
+//! [FNV-32][1] checksum implementation.
+//!
+//! [1]: https://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function
+
 #[cfg(feature = "generic")]
 extern crate generic_array;
 #[cfg(feature = "generic")]
@@ -18,6 +22,7 @@ pub mod fnv32 {
     #[cfg(feature = "generic")]
     use generic_array;
 
+    /// The FNV1-32 hasher.
     #[derive(Copy, Clone)]
     pub struct Fnv32 {
         state: u32,
@@ -63,6 +68,7 @@ pub mod fnv32a {
     #[cfg(feature = "generic")]
     use generic_array;
 
+    /// The FNV1a-32 hasher.
     #[derive(Copy, Clone)]
     pub struct Fnv32a {
         state: u32,
@@ -108,6 +114,7 @@ pub mod fnv32z {
     #[cfg(feature = "generic")]
     use generic_array;
 
+    /// The FNV0-32 hasher.
     #[derive(Copy, Clone)]
     pub struct Fnv32z {
         state: u32,

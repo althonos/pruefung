@@ -1,4 +1,4 @@
-//! [CRC][1] implementations.
+//! [Cyclic Redundancy Check][1] implementations.
 //!
 //! [1]: https://en.wikipedia.org/wiki/CRC32
 
