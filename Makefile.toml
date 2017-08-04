@@ -1,17 +1,10 @@
 [tasks.coverage]
-install-crate = "cargo-tarpaulin"
-command = "cargo"
-args = ["tarpaulin"]
+alias = "tasks.cargo-tarpaulin"
 
 [tasks.ci-coverage]
 install-crate = "cargo-tarpaulin"
 command = "cargo"
 args = ["tarpaulin", "--ciserver=travis-ci"]
-
-[tasks.audit]
-install_crate = "cargo-audit"
-command       = "cargo"
-args          = ["audit"]
 
 [tasks.codecov]
 dependencies = ["ci-coverage"]
