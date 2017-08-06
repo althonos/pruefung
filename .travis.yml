@@ -21,7 +21,6 @@ env:
 before_install:
   - curl -SsL $CARGO_MAKE_URL$(cargo search cargo-make | grep cargo-make | cut -d\" -f2) > $HOME/.cargo/bin/cargo-make
   - chmod 777 $HOME/.cargo/bin/cargo-make
-  - export PATH=$HOME/.cargo/bin:$PATH
 
 install:
   - cargo make build
