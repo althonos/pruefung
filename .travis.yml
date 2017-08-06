@@ -16,9 +16,11 @@ matrix:
 env:
   global:
   - RUSTFLAGS="-C link-dead-code"
+  - CARGO_MAKE_URL="https://bintray.com/sagiegurari/cargo-make/download_file?file_path=cargo-make_v"
 
 before_install:
-  - if [[ ! -e "$HOME/.cargo/bin/cargo-make" ]]; then cargo install --debug cargo-make; fi
+  - curl -SsL $CARGO_MAKE_URL$(cargo search cargo-make | grep cargo-make | cut -d\" -f2) > $HOME/.cargo/bin/cargo-make
+  - chmod 777 $HOME/.cargo/bin/cargo-make
   - export PATH=$HOME/.cargo/bin:$PATH
 
 install:
