@@ -8,6 +8,7 @@ Checksums in pure Rust, including CRC32, CRC32C, Adler32, BSD and SysV sums, \
 UNIX cksum, Fletcher16, with no_std available, implementing the Hasher trait.
 """
 repository  = "https://github.com/althonos/pruefung"
+readme      = "README.md"
 keywords    = ["checksum", "crc", "hash"]
 
 [lib]
