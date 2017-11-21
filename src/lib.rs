@@ -16,6 +16,11 @@ extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
 
+#[cfg(feature = "generic")]
+pub use digest::Digest;
+
+pub use core::hash::Hasher;
+
 #[macro_use]
 mod macros;
 
