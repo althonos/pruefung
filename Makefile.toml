@@ -1,13 +1,10 @@
 [tasks.coverage]
-alias = "tasks.cargo-tarpaulin"
+alias = "coverage-tarpaulin-xml"
 
-[tasks.ci-coverage]
-install-crate = "cargo-tarpaulin"
+[tasks.coverage-tarpaulin-xml]
+install_crate = "cargo-tarpaulin"
 command = "cargo"
-args = ["tarpaulin", "--ciserver=travis-ci"]
-
-[tasks.codecov]
-dependencies = ["ci-coverage"]
+args = ["tarpaulin", "--out=Xml", "--ciserver=travis-ci"]
 
 [tasks.chandler]
 install_script = ["gem install chandler -n target/gems"]
