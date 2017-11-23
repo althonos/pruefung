@@ -1,6 +1,6 @@
 [package]
 name        = "pruefung"
-version     = "0.2.0"
+version     = "0.2.1"
 authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
 license     = "MIT"
 description = "Checksums in pure Rust, with no_std available, implementing the Hasher trait."
