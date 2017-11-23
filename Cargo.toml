@@ -7,6 +7,7 @@ description = "Checksums in pure Rust, with no_std available, implementing the H
 repository  = "https://github.com/althonos/pruefung"
 readme      = "README.md"
 keywords    = ["checksum", "crc", "hash"]
+categories  = ["no-std"]
 
 [lib]
 name       = "pruefung"
@@ -26,7 +27,9 @@ generic-array = { version = "^0.8", optional = true }
 crypto-tests = "0.5"
 
 [badges]
-travis-ci = { repository = "althonos/pruefung" }
+travis-ci   = { repository = "althonos/pruefung" }
+codecov     = { repository = "althonos/pruefung" }
+maintenance = { status = "actively-developed" }
 
 [features]
 generic = ["generic-array", "digest"]
