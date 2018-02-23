@@ -74,9 +74,12 @@ macro_rules! unit_test_part_data {
 
             hasher1.write(&data[..3]);
             hasher1.write(&data[3..]);
-            hasher2.write(data);
+            hasher2.write(&data[..]);
 
-            assert!(hasher1.finish() == hasher2.finish());
+            let h1 = hasher1.finish();
+            let h2 = hasher2.finish();
+
+            assert_eq!(h1, h2);
 
         }
 
