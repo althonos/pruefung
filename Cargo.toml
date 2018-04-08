@@ -32,5 +32,15 @@ codecov     = { repository = "althonos/pruefung" }
 maintenance = { status = "actively-developed" }
 
 [features]
+# default features: use everything
+default = ["generic", "adler32", "bsd", "crc", "fletcher16", "fnv", "unix", "sysv"]
+# generic array digests
 generic = ["generic-array", "digest"]
-default = ["generic"]
+# Per-checksum feature
+adler32 = []
+bsd = []
+crc = []
+fletcher16 = []
+fnv = []
+unix = []
+sysv = []

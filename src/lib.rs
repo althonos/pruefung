@@ -11,23 +11,19 @@
 #![crate_type= "lib"]
 #![no_std]
 
-#[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
-extern crate digest;
-
-#[cfg(feature = "generic")]
-pub use digest::Digest;
+#[cfg(feature = "generic")] extern crate generic_array;
+#[cfg(feature = "generic")] extern crate digest;
+#[cfg(feature = "generic")] pub use digest::Digest;
 
 pub use core::hash::Hasher;
 
 #[macro_use]
 mod macros;
 
-pub mod adler32;
-pub mod bsd;
-pub mod crc;
-pub mod fletcher16;
-pub mod fnv;
-pub mod unix;
-pub mod sysv;
+#[cfg(feature = "adler32")]	pub mod adler32;
+#[cfg(feature = "bsd")]		pub mod bsd;
+#[cfg(feature = "crc")]		pub mod crc;
+#[cfg(feature = "fletcher16")] 	pub mod fletcher16;
+#[cfg(feature = "fnv")]		pub mod fnv;
+#[cfg(feature = "unix")]	pub mod unix;
+#[cfg(feature = "sysv")]	pub mod sysv;
