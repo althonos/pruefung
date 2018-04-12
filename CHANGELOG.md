@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 
+## [0.2.1] - 2017-11-23
+### Added
+- `Digest` and `Hasher` traits are re-exported at root of module
+### Fixed
+- README.md is now the readme file of the crate
+- Make `BSD` checksum available only since `0.2.1`
+
 ## [0.2.0] - 2017-07-24
 ### Added
 - Following sum with Hasher & Digest implementations:
