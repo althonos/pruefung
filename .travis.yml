@@ -35,7 +35,7 @@ after_success:
 
 deploy:
   provider: script
-  script: cargo make publish -t $CRATES_IO_TOKEN
+  script: cargo publish -t $CRATES_IO_TOKEN
   on:
     tags: true
     repo: althonos/pruefung
