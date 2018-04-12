@@ -2,7 +2,7 @@
 alias = "coverage-tarpaulin-xml"
 
 [tasks.coverage-tarpaulin-xml]
-install_crate = "cargo-tarpaulin"
+install_script = ["curl -SsL https://raw.githubusercontent.com/xd009642/tarpaulin/master/travis-install.sh | bash"]
 command = "cargo"
 args = ["tarpaulin", "--out=Xml", "--ciserver=travis-ci"]
 
