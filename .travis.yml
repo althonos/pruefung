@@ -13,29 +13,23 @@ rust:
   - beta
   - nightly
 
-# matrix:
-#   allow_failures:
-#     - rust: nightly
-
 env:
   global:
   - RUSTFLAGS="-C link-dead-code"
   - RUST_BACKTRACE=1
   - CARGO_MAKE_RUN_CODECOV=true
+  - SCCACHE_DIR="$HOME/.cargo/sccache"
 
 before_install:
-  - cargo install -f --debug cargo-make
+  - ci/install-cargo-make.sh
+  - cargo make ci-setup-flow
 
 script:
   - cargo make ci-flow
 
-after_success:
-  - cargo make audit
-  - cargo make chandler
-
 deploy:
   provider: script
-  script: cargo publish --token $CRATES_IO_TOKEN
+  script: cargo make publish-flow
   on:
     tags: true
     repo: althonos/pruefung
