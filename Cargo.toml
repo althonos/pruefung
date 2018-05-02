@@ -20,7 +20,7 @@ proc-macro = false
 harness    = true
 
 [dependencies]
-digest        = { version = "^0.6", optional = true }
+digest        = { version = "^0.6", optional = true, default-features = false }
 generic-array = { version = "^0.8", optional = true }
 
 [dev-dependencies]
@@ -36,6 +36,8 @@ maintenance = { status = "actively-developed" }
 default = ["generic", "adler32", "bsd", "crc", "fletcher16", "fnv", "unix", "sysv"]
 # generic array digests
 generic = ["generic-array", "digest"]
+# std feature to disable no_std
+std = ["digest/std"]
 # Per-checksum feature
 adler32 = []
 bsd = []

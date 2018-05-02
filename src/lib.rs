@@ -8,12 +8,14 @@
 //! [![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=86400&style=flat-square)](http://keepachangelog.com/)
 //! [![SayThanks](https://img.shields.io/badge/say-thanks!-1EAEDB.svg?maxAge=86400&style=flat-square)](https://saythanks.io/to/althonos)
 
-#![crate_type= "lib"]
-#![no_std]
+#![crate_type="lib"]
+#![cfg_attr(not(feature = "std"), no_std)]
 
 #[cfg(feature = "generic")] extern crate generic_array;
 #[cfg(feature = "generic")] extern crate digest;
 #[cfg(feature = "generic")] pub use digest::Digest;
+
+#[cfg(feature = "std")] use std as core;
 
 pub use core::hash::Hasher;
 
@@ -27,3 +29,4 @@ mod macros;
 #[cfg(feature = "fnv")]		pub mod fnv;
 #[cfg(feature = "unix")]	pub mod unix;
 #[cfg(feature = "sysv")]	pub mod sysv;
+
