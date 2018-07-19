@@ -35,6 +35,6 @@ deploy:
     repo: althonos/pruefung
     rust: stable
 
-notifications:
-  email:
-  - althonosdev@gmail.com
+#notifications:
+#  email:
+#  - althonosdev@gmail.com
