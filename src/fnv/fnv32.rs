@@ -3,16 +3,14 @@
 //! [1]: https://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
-
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 mod consts {
     pub const FNV_OFFSET: u32 = 0x811c9dc5;
     pub const FNV_PRIME: u32 = 16777619;
 }
-
 
 pub mod fnv32 {
 
@@ -30,7 +28,9 @@ pub mod fnv32 {
 
     impl Default for Fnv32 {
         fn default() -> Self {
-            Fnv32 { state: super::consts::FNV_OFFSET }
+            Fnv32 {
+                state: super::consts::FNV_OFFSET,
+            }
         }
     }
 
@@ -59,7 +59,6 @@ pub mod fnv32 {
 
 }
 
-
 pub mod fnv32a {
 
     use core::hash::Hasher;
@@ -76,7 +75,9 @@ pub mod fnv32a {
 
     impl Default for Fnv32a {
         fn default() -> Self {
-            Fnv32a { state: super::consts::FNV_OFFSET }
+            Fnv32a {
+                state: super::consts::FNV_OFFSET,
+            }
         }
     }
 
@@ -104,7 +105,6 @@ pub mod fnv32a {
     }
 
 }
-
 
 pub mod fnv32z {
 
@@ -150,7 +150,6 @@ pub mod fnv32z {
     }
 
 }
-
 
 pub use self::fnv32::Fnv32;
 pub use self::fnv32a::Fnv32a;

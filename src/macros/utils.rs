@@ -6,9 +6,7 @@
 /// [2]: https://doc.rust-lang.org/core/hash/trait.Hasher.html
 #[allow(unused)]
 macro_rules! implement_digest {
-
-    ($Hasher:ident, $BlockSize:ident, $OutputSize:ident) => (
-
+    ($Hasher:ident, $BlockSize:ident, $OutputSize:ident) => {
         #[cfg(feature = "generic")]
         impl digest::BlockInput for $Hasher {
             type BlockSize = generic_array::typenum::$BlockSize;
@@ -32,13 +30,11 @@ macro_rules! implement_digest {
                 let mut out = self.finish();
                 let size = Self::OutputSize::to_usize();
                 for i in 0..size {
-                    array[size-i-1] = (out & u8::max_value() as u64) as u8;
+                    array[size - i - 1] = (out & u8::max_value() as u64) as u8;
                     out >>= 8;
                 }
                 array
             }
         }
-
-    )
-
+    };
 }

@@ -6,9 +6,7 @@
 /// [2]: https://doc.rust-lang.org/core/hash/trait.Hasher.html
 #[allow(unused)]
 macro_rules! output_array {
-
-    ($Hasher:ident, $output:expr, $array_name:ident) => (
-
+    ($Hasher:ident, $output:expr, $array_name:ident) => {
         use digest::FixedOutput;
         use generic_array::typenum::Unsigned;
 
@@ -18,26 +16,19 @@ macro_rules! output_array {
         let mut output = $output;
         let mut $array_name = GenericArray::<u8, OutputSize>::default();
         for i in 0..size {
-            $array_name[size-i-1] = ((output as u64) & u8::max_value() as u64) as u8;
+            $array_name[size - i - 1] = ((output as u64) & u8::max_value() as u64) as u8;
             output >>= 8;
         }
-
-    )
-
-
+    };
 }
-
-
 
 #[allow(unused)]
 macro_rules! unit_test_no_data {
-    ($Hasher:ident, $output:expr) => (
-
+    ($Hasher:ident, $output:expr) => {
         #[test]
         fn no_data() {
-
-            use digest::Digest;
             use core::hash::Hasher;
+            use digest::Digest;
             use generic_array::GenericArray;
 
             // Create a hasher
@@ -52,20 +43,16 @@ macro_rules! unit_test_no_data {
             // Check the output array is good
             assert!(hasher.fixed_result() == array);
         }
-
-    )
+    };
 }
 
 #[allow(unused)]
 macro_rules! unit_test_part_data {
-
-    ($Hasher:ident) => (
-
+    ($Hasher:ident) => {
         #[test]
         fn part_data() {
-
-            use digest::Digest;
             use core::hash::Hasher;
+            use digest::Digest;
 
             let mut hasher1 = super::$Hasher::new();
             let mut hasher2 = super::$Hasher::new();
@@ -80,24 +67,17 @@ macro_rules! unit_test_part_data {
             let h2 = hasher2.finish();
 
             assert_eq!(h1, h2);
-
         }
-
-
-
-    )
+    };
 }
 
 #[allow(unused)]
 macro_rules! unit_test_single_byte {
-
-    ($Hasher:ident, $input:expr, $output:expr) => (
-
+    ($Hasher:ident, $input:expr, $output:expr) => {
         #[test]
         fn single_byte() {
-
-            use digest::Digest;
             use core::hash::Hasher;
+            use digest::Digest;
             use generic_array::GenericArray;
 
             let mut hasher = super::$Hasher::new();
@@ -108,6 +88,5 @@ macro_rules! unit_test_single_byte {
             assert!(hasher.finish() == $output as u64);
             assert!(hasher.fixed_result() == array);
         }
-    )
-
+    };
 }

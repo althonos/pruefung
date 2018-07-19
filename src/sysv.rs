@@ -5,20 +5,18 @@
 //! [1]: https://en.wikipedia.org/wiki/SYSV_checksum
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
 use core::ops::Rem;
-
 
 /// The SysV hasher.
 #[derive(Copy, Clone)]
 pub struct SysV {
     state: u32,
 }
-
 
 impl Default for SysV {
     fn default() -> Self {
@@ -40,9 +38,7 @@ impl Hasher for SysV {
     }
 }
 
-
 implement_digest!(SysV, U512, U2);
-
 
 #[cfg(test)]
 #[cfg(feature = "generic")]
