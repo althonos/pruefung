@@ -2,8 +2,8 @@
 //!
 //! [1]: https://en.wikipedia.org/wiki/CRC32
 
-pub mod crc16;
 pub mod crc32;
+pub mod crc16;
 pub mod crc8;
 
 pub use self::crc16::Crc16;
