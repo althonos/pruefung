@@ -10,8 +10,8 @@ addons:
 
 rust:
   - stable
-  - beta
-  - nightly
+#  - beta
+#  - nightly
 
 env:
   global:
