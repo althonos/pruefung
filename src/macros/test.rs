@@ -27,8 +27,6 @@ macro_rules! output_array {
 
 }
 
-
-
 #[allow(unused)]
 macro_rules! unit_test_no_data {
     ($Hasher:ident, $output:expr) => (

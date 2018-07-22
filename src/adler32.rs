@@ -8,19 +8,17 @@
 //! [1]: https://en.wikipedia.org/wiki/Adler-32
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
 use core::borrow::BorrowMut;
-
 
 mod consts {
     pub const BASE: u32 = 65521;
     pub const NMAX: usize = 5552;
 }
-
 
 /// The Adler32 hasher.
 #[derive(Copy, Clone)]
@@ -29,13 +27,11 @@ pub struct Adler32 {
     sum2: u32,
 }
 
-
 impl Default for Adler32 {
     fn default() -> Self {
         Adler32 { sum1: 1, sum2: 0 }
     }
 }
-
 
 impl Hasher for Adler32 {
     #[inline]
@@ -66,9 +62,7 @@ impl Hasher for Adler32 {
     }
 }
 
-
 implement_digest!(Adler32, U32768, U4);
-
 
 #[cfg(test)]
 #[cfg(feature = "generic")]

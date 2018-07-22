@@ -4,14 +4,12 @@
 //!
 //! [1]: https://en.wikipedia.org/wiki/BSD_checksum
 
-
-#[cfg(feature = "generic")]
-extern crate generic_array;
 #[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
-
 
 /// The BSD hasher.
 #[derive(Copy, Clone)]
@@ -19,13 +17,11 @@ pub struct Bsd {
     state: u16,
 }
 
-
 impl Default for Bsd {
     fn default() -> Self {
         Bsd { state: 0 }
     }
 }
-
 
 impl Hasher for Bsd {
     #[inline]

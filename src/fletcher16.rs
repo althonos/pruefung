@@ -3,19 +3,17 @@
 //! [1]: https://en.wikipedia.org/wiki/Fletcher%27s_checksum#Fletcher-16
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
 use core::borrow::BorrowMut;
-
 
 mod consts {
     /// The maximum number of consecutive sums before an u8 overflow could happen.
     pub const NMAX: usize = 20;
 }
-
 
 /// The Fletcher16 hasher.
 #[derive(Copy, Clone)]
@@ -24,13 +22,11 @@ pub struct Fletcher16 {
     sum2: u16,
 }
 
-
 impl Default for Fletcher16 {
     fn default() -> Self {
         Fletcher16 { sum1: 0, sum2: 0 }
     }
 }
-
 
 impl Fletcher16 {
     #[inline]
@@ -41,7 +37,6 @@ impl Fletcher16 {
         ]
     }
 }
-
 
 impl Hasher for Fletcher16 {
     #[inline]

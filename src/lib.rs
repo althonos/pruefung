@@ -8,25 +8,35 @@
 //! [![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=86400&style=flat-square)](http://keepachangelog.com/)
 //! [![SayThanks](https://img.shields.io/badge/say-thanks!-1EAEDB.svg?maxAge=86400&style=flat-square)](https://saythanks.io/to/althonos)
 
-#![crate_type="lib"]
+#![crate_type = "lib"]
 #![cfg_attr(not(feature = "std"), no_std)]
 
-#[cfg(feature = "generic")] extern crate generic_array;
-#[cfg(feature = "generic")] extern crate digest;
-#[cfg(feature = "generic")] pub use digest::Digest;
+#[cfg(feature = "generic")]
+extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
+#[cfg(feature = "generic")]
+pub use digest::Digest;
 
-#[cfg(feature = "std")] use std as core;
+#[cfg(feature = "std")]
+use std as core;
 
 pub use core::hash::Hasher;
 
 #[macro_use]
 mod macros;
 
-#[cfg(feature = "adler32")]	pub mod adler32;
-#[cfg(feature = "bsd")]		pub mod bsd;
-#[cfg(feature = "crc")]		pub mod crc;
-#[cfg(feature = "fletcher16")] 	pub mod fletcher16;
-#[cfg(feature = "fnv")]		pub mod fnv;
-#[cfg(feature = "unix")]	pub mod unix;
-#[cfg(feature = "sysv")]	pub mod sysv;
-
+#[cfg(feature = "adler32")]
+pub mod adler32;
+#[cfg(feature = "bsd")]
+pub mod bsd;
+#[cfg(feature = "crc")]
+pub mod crc;
+#[cfg(feature = "fletcher16")]
+pub mod fletcher16;
+#[cfg(feature = "fnv")]
+pub mod fnv;
+#[cfg(feature = "unix")]
+pub mod unix;
+#[cfg(feature = "sysv")]
+pub mod sysv;

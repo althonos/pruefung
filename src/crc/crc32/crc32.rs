@@ -5,12 +5,11 @@
 //! [2]: https://en.wikipedia.org/wiki/CRC32
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
-
 
 mod consts {
     #[cfg_attr(rustfmt, rustfmt_skip)]
@@ -87,13 +86,11 @@ mod consts {
     pub const BASE: u32 = 0xFF;
 }
 
-
 /// The CRC32 hasher (ISO / Ethernet variant).
 #[derive(Copy, Clone)]
 pub struct Crc32 {
     state: u32,
 }
-
 
 impl Default for Crc32 {
     fn default() -> Self {
@@ -110,7 +107,6 @@ impl Hasher for Crc32 {
             pos = (self.state ^ byte as u32) & consts::BASE;
             self.state = (self.state >> 8) ^ consts::LOOKUP_TABLE[pos as usize];
         }
-
     }
 
     #[inline]

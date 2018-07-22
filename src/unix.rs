@@ -10,12 +10,11 @@
 //! [1]: https://en.wikipedia.org/wiki/Cksum
 
 #[cfg(feature = "generic")]
-extern crate generic_array;
-#[cfg(feature = "generic")]
 extern crate digest;
+#[cfg(feature = "generic")]
+extern crate generic_array;
 
 use core::hash::Hasher;
-
 
 mod consts {
     #[cfg_attr(rustfmt, rustfmt_skip)]
@@ -90,14 +89,12 @@ mod consts {
     ];
 }
 
-
 /// The UNIX hasher.
 #[derive(Copy, Clone)]
 pub struct Unix {
     state: u32,
     length: usize,
 }
-
 
 impl Default for Unix {
     fn default() -> Self {
@@ -108,11 +105,9 @@ impl Default for Unix {
     }
 }
 
-
 impl Hasher for Unix {
     #[inline]
     fn write(&mut self, input: &[u8]) {
-
         let mut pos: usize;
 
         for &byte in input.iter() {
@@ -121,12 +116,10 @@ impl Hasher for Unix {
         }
 
         self.length += input.len();
-
     }
 
     #[inline]
     fn finish(&self) -> u64 {
-
         let mut length = self.length;
         let mut sum = self.state;
         let mut pos: usize;
@@ -141,9 +134,7 @@ impl Hasher for Unix {
     }
 }
 
-
 implement_digest!(Unix, U1024, U4);
-
 
 #[cfg(test)]
 #[cfg(feature = "generic")]
