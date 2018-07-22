@@ -42,9 +42,14 @@ condition_script = ['test ! -d "$SCCACHE_DIR"']
 script = ['mkdir "$SCCACHE_DIR"']
 
 [tasks.ci-setup-tarpaulin]
-condition = { env = { "TRAVIS_RUST_VERSION" = "nightly" } }
-command = "cargo"
-args = ["install", "cargo-tarpaulin", "-f"]
+env = { "RUSTFLAGS" = "--cfg procmacro2_semver_exempt" }
+script = [
+   '''
+   LATEST=$(cargo search cargo-tarpaulin | grep cargo-tarpaulin | cut -f2 -d"\"")
+   CURRENT=$( (cargo tarpaulin -V 2>/dev/null || echo "none") | cut -d' ' -f3)
+   [ "$LATEST" != "$CURRENT" ] && cargo install cargo-tarpaulin -f
+   '''
+]
 
 [tasks.ci-setup-flow]
 condition = { env = { "TRAVIS" = "true" } }
@@ -66,7 +71,7 @@ dependencies = ["ci-setup-tarpaulin"]
 alias = "ci-coverage"
 
 [tasks.ci-coverage]
-condition = { env = { "TRAVIS_RUST_VERSION" = "nightly" } }
+condition = { env = { "TRAVIS" = "true" } }
 command = "cargo"
 args = ["tarpaulin", "--out=Xml", "--ciserver=travis-ci"]
 
