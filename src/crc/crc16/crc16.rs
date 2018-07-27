@@ -81,8 +81,6 @@ mod consts {
         0x6E17, 0x7E36, 0x4E55, 0x5E74,
         0x2E93, 0x3EB2, 0x0ED1, 0x1EF0,
     ];
-
-    pub const BASE: u16 = 0xFF;
 }
 
 /// The CRC16 hasher
@@ -103,8 +101,8 @@ impl Hasher for Crc16 {
         let mut pos: u16;
 
         for &byte in input.iter() {
-            pos = ((self.state >> 8) ^ byte as u16) & consts::BASE;
-            self.state = consts::LOOKUP_TABLE[pos as usize] ^ (self.state << 8);
+            pos = ((self.state >> 8) ^ byte as u16) & 0xFF;
+            self.state = (self.state << 8) ^ consts::LOOKUP_TABLE[pos as usize];
         }
     }
 
