@@ -1,3 +1,25 @@
+mod crc64 {
+
+    extern crate pruefung;
+
+    use crypto_tests;
+    use crypto_tests::hash::Test;
+
+    #[test]
+    fn main() {
+        let tests =
+            new_tests!("crc64/1", "crc64/2" /*, "crc64/3", "crc64/4", "crc64/5", "crc64/6"*/);
+        crypto_tests::hash::main_test::<pruefung::crc::crc64::Crc64>(&tests);
+    }
+
+    #[test]
+    fn one_million_a() {
+        let output = include_bytes!("data/crc64/one_million_a.output.bin");
+        crypto_tests::hash::one_million_a::<pruefung::crc::crc64::Crc64>(output);
+    }
+
+}
+
 mod crc32 {
 
     extern crate pruefung;
