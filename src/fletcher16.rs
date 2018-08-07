@@ -7,6 +7,7 @@ extern crate digest;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 
+use core::hash::Hasher;
 use core::borrow::BorrowMut;
 
 mod consts {
