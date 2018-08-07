@@ -1,5 +1,5 @@
 sudo: true
-#dist: trusty
+dist: trusty
 language: rust
 cache: cargo
 
@@ -10,8 +10,8 @@ addons:
 
 rust:
   - stable
-#  - beta
-#  - nightly
+  - beta
+  - nightly
 
 env:
   global:
@@ -22,6 +22,8 @@ env:
 
 before_install:
   - ci/install-cargo-make.sh
+
+install:
   - cargo make ci-setup-flow
 
 script:
@@ -35,6 +37,6 @@ deploy:
     repo: althonos/pruefung
     rust: stable
 
-#notifications:
-#  email:
-#  - althonosdev@gmail.com
+notifications:
+  email:
+  - althonosdev@gmail.com

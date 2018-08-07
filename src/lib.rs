@@ -36,7 +36,7 @@ pub mod crc;
 pub mod fletcher16;
 #[cfg(feature = "fnv")]
 pub mod fnv;
-#[cfg(feature = "sysv")]
-pub mod sysv;
 #[cfg(feature = "unix")]
 pub mod unix;
+#[cfg(feature = "sysv")]
+pub mod sysv;

@@ -13,7 +13,6 @@ extern crate digest;
 extern crate generic_array;
 
 use core::borrow::BorrowMut;
-use core::hash::Hasher;
 
 mod consts {
     pub const BASE: u32 = 65521;
