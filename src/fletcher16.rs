@@ -7,8 +7,8 @@ extern crate digest;
 #[cfg(feature = "generic")]
 extern crate generic_array;
 
-use core::hash::Hasher;
 use core::borrow::BorrowMut;
+use core::hash::Hasher;
 
 mod consts {
     /// The maximum number of consecutive sums before an u8 overflow could happen.
