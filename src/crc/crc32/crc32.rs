@@ -1,6 +1,5 @@
 //! [Ethernet][1] [CRC32][2] implementation.
 //!
-//!
 //! [1]: https://en.wikipedia.org/wiki/Ethernet
 //! [2]: https://en.wikipedia.org/wiki/CRC32
 

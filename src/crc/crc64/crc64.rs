@@ -1,7 +1,6 @@
-//! [CRC16][1] implementation.
+//! [CRC64][1] implementation.
 //!
-//!
-//! [1]: https://en.wikipedia.org/wiki/Ethernet
+//! [1]: https://en.wikipedia.org/wiki/CRC-64
 
 #[cfg(feature = "generic")]
 extern crate digest;

@@ -1,5 +1,11 @@
 //! [Cyclic Redundancy Check][1] implementations.
 //!
+//! # Reference
+//!
+//! 1. Catalogue of parametrised CRC algorithms:
+//!    http://reveng.sourceforge.net/crc-catalogue/
+//!
+//!
 //! [1]: https://en.wikipedia.org/wiki/CRC32
 
 pub mod crc16;

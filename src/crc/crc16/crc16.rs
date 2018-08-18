@@ -1,7 +1,7 @@
-//! [CRC16][1] implementation.
+//! [XMODEM][1] [CRC16][2] implementation.
 //!
-//!
-//! [1]: https://en.wikipedia.org/wiki/Ethernet
+//! [1]: https://en.wikipedia.org/wiki/XMODEM
+//! [2]: https://en.wikipedia.org/wiki/CRC-16
 
 #[cfg(feature = "generic")]
 extern crate digest;

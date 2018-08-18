@@ -1,7 +1,7 @@
-//! [CRC16][1] implementation.
+//! [CCIT][1] [CRC8][2] implementation.
 //!
-//!
-//! [1]: https://en.wikipedia.org/wiki/Ethernet
+//! [1]: https://en.wikipedia.org/wiki/CCITT
+//! [2]: https://en.wikipedia.org/wiki/CRC-8
 
 #[cfg(feature = "generic")]
 extern crate digest;
