@@ -47,7 +47,7 @@ script = [
    '''
    LATEST=$(cargo search cargo-tarpaulin | grep cargo-tarpaulin | cut -f2 -d"\"")
    CURRENT=$( (cargo tarpaulin -V 2>/dev/null || echo "none") | cut -d' ' -f3)
-   [ "$LATEST" != "$CURRENT" ] && cargo install cargo-tarpaulin -f
+   if [ "$LATEST" != "$CURRENT" ]; then cargo install -f cargo-tarpaulin; fi
    '''
 ]
 
