@@ -69,8 +69,11 @@ Algorithm           | *since* | *implemented as*
 ------------------- | ------- | --------
 [Adler32][7]        | `0.1.0` | [`::adler32::Adler32`][15]
 [BSD checksum][8]   | `0.2.0` | [`::bsd::Bsd`][16]
-[CRC32][5]          | `0.2.0` | [`::crc::crc32::CRC32`][17]
-[CRC32C][5]         | `0.2.0` | [`::crc::crc32::CRC32C`][18]
+[CRC8][5]           | `0.3.0` | [`::crc::crc8::Crc8`][28]
+[CRC16][5]          | `0.3.0` | [`::crc::crc8::Crc16`][29]
+[CRC32][5]          | `0.2.0` | [`::crc::crc32::Crc32`][17]
+[CRC32C][5]         | `0.2.0` | [`::crc::crc32::Crc32c`][18]
+[CRC64][5]          | `0.3.0` | [`::crc::crc64::Crc64`][30]
 [Fletcher16][9]     | `0.1.0` | [`::fletcher16::Fletcher16`][19]
 [FNV0-32][10]       | `0.2.0` | [`::fnv::fnv32::Fnv32z`][20]
 [FNV1-32][11]       | `0.2.0` | [`::fnv::fnv32::Fnv32`][21]
@@ -87,6 +90,12 @@ for something else than data validation against *accidental* modifications:
 an attacker could easily *forge* a file to pass any of these checksums ! For
 secure checksums, look at the [hashes][1] implemented by the [RustCrypto][2]
 team.
+
+
+## Credits
+
+* [Martin Larralde](https://github.com/althonos)
+* [Ferdia McKeogh](https://github.com/chocol4te)
 
 
 ## Why `pruefung` ?
@@ -127,3 +136,6 @@ name, instead of another checksum, cksum, checksums, crc, etc. crate.*
 [25]: https://docs.rs/pruefung/*/pruefung/fnv/fnv64/struct.Fnv64a.html
 [26]: https://docs.rs/pruefung/*/pruefung/sysv/struct.SysV.html
 [27]: https://docs.rs/pruefung/*/pruefung/unix/struct.Unix.html
+[28]: https://docs.rs/pruefung/*/pruefung/crc/crc8/struct.Crc8.html
+[29]: https://docs.rs/pruefung/*/pruefung/crc/crc16/struct.Crc16.html
+[30]: https://docs.rs/pruefung/*/pruefung/crc/crc64/struct.Crc64.html

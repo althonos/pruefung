@@ -6,18 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
-
+### Added
+- Following sum with `Hasher` and `Digest` Implementation (#3):
+    * CRC8
+    * CRC16
+    * CRC64
 
 ## [0.2.1] - 2017-11-23
 ### Added
 - `Digest` and `Hasher` traits are re-exported at root of module
 ### Fixed
-- README.md is now the readme file of the crate
+- `README.md` is now the readme file of the crate
 - Make `BSD` checksum available only since `0.2.1`
 
 ## [0.2.0] - 2017-07-24
 ### Added
-- Following sum with Hasher & Digest implementations:
+- Following sum with `Hasher` & `Digest` implementations:
     * Unix (UNIX `cksum`)
     * FNV 32 in several variants: `FNV1-32`, `FNV1a-32` and `FNV0-32`
     * FNV 64 in several variants: `FNV1-64`, `FNV1a-64` and `FNV0-64`
