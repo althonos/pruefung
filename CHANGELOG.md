@@ -11,20 +11,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     * Crc8 (CCIT variant)
     * Crc16 (XMODEM variant)
     * Crc64 (*???* variant)
-- Derived `Debug` implementation for all `Hasher`s
+- Derived `Debug` implementation for all `Hasher`.
 ### Changed
-- Bumped required `digest` version to `v0.7`
-- Bumped required `generic-array` version to `v0.9`
+- Bumped required `digest` version to `v0.7`.
+- Bumped required `generic-array` version to `v0.9`.
 ### Removed
 - [`crypto-test`](https://crates.io/crates/crypto-tests) test dependency
-  (replaced by [`digest::dev`](https://docs.rs/crate/digest/0.7.5/source/src/dev.rs))
+  (replaced by [`digest::dev`](https://docs.rs/crate/digest/0.7.5/source/src/dev.rs)).
 
 ## [0.2.1] - 2017-11-23
 ### Added
-- `Digest` and `Hasher` traits are re-exported at root of module
+- `Digest` and `Hasher` traits are re-exported at root of module.
 ### Fixed
-- `README.md` is now the readme file of the crate
-- Make `BSD` checksum available only since `0.2.1`
+- `README.md` is now the readme file of the crate.
+- Make `BSD` checksum available only since `0.2.1`.
 
 ## [0.2.0] - 2017-07-24
 ### Added
@@ -37,12 +37,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CRC32/CRC32C**: Useless NOT operations before/after each block write, replaced by
   a single NOT operation in the `finish` method (and initialisation to `0xFFFFFFFF`).
 ### Changed
-- Implementation of unit tests to use private macros module
+- Implementation of unit tests to use private macros module.
 - Names of checksum structs to follow Rust naming conventions (acronyms as single
-  CamelCased word): `BSD` -> `Bsd`, `CRC32(C)` -> `Crc32(c)`, `UNIX` -> `Unix`
+  CamelCased word): `BSD` -> `Bsd`, `CRC32(C)` -> `Crc32(c)`, `UNIX` -> `Unix`.
 - Code using bitwise operations to use Rust primitive methods where applicable.
 - Structure of the library to nest the `crc32` module inside a `crc` module.
-## Removed
+### Removed
 - [`byte-tools`](https://crates.io/crates/byte-tools) and [`block-buffer`](https://crates.io/crates/block-buffers)
   dependencies, *crate is now free of any requirement !*
 
@@ -56,10 +56,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     * Crc32c (Castagnoli polynomial variant)
     * Fletcher16
     * SysV checksum (UNIX `sum -s`)
-- Tests and benchmarks generated with the [`crypto-tests`](https://crates.io/crates/crypto-tests) crate
-- A basic README inspired by the README of the [`hashes`](https://github.com/RustCrypto/hashes) project
-- This CHANGELOG file
+- Tests and benchmarks generated with the [`crypto-tests`](https://crates.io/crates/crypto-tests) crate.
+- A basic README inspired by the README of the [`hashes`](https://github.com/RustCrypto/hashes) project.
+- This CHANGELOG file.
 
 
 [Unreleased]: https://github.com/althonos/pruefung/compare/0.2.0...HEAD
 [0.2.0]: https://github.com/althonos/pruefung/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/althonos/pruefung/compare/8b9ae86...0.1.0
