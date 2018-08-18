@@ -1,9 +1,9 @@
 //! [Cyclic Redundancy Check][1] implementations.
 //!
-//! # Reference
+//! # References
 //!
-//! 1. Catalogue of parametrised CRC algorithms:
-//!    http://reveng.sourceforge.net/crc-catalogue/
+//! * [Catalogue of parametrised CRC algorithms](http://reveng.sourceforge.net/crc-catalogue/)
+//! * [Wikipedia list of CRC Polynomials](https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Polynomial_representations_of_cyclic_redundancy_checks)
 //!
 //!
 //! [1]: https://en.wikipedia.org/wiki/CRC32

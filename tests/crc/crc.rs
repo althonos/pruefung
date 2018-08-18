@@ -92,8 +92,7 @@ mod crc64 {
     #[test]
     fn main() {
         let tests = new_tests!(
-            "crc64/1", "crc64/2", /*, "crc64/3", "crc64/4", "crc64/5", "crc64/6"*/
-            "crc64/7"
+            "crc64/1", "crc64/2", /*, "crc64/3", "crc64/4", "crc64/5", "crc64/6", "crc64/7"*/
         );
         digest::dev::main_test::<pruefung::crc::crc64::Crc64>(&tests);
     }

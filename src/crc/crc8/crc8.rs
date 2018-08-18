@@ -1,4 +1,4 @@
-//! [ITU][1] [CRC8][2] implementation.
+//! [ANSI][1] [CRC8][2] implementation.
 //!
 //! # Reference
 //!
