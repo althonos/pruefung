@@ -6,7 +6,8 @@ mod crc8 {
 
     #[test]
     fn main() {
-        let tests = new_tests!("crc8/1", "crc8/2", "crc8/3", "crc8/4", "crc8/5", "crc8/6");
+        let tests =
+            new_tests!("crc8/1", "crc8/2", "crc8/3", "crc8/4", "crc8/5", "crc8/6", "crc8/7");
         digest::dev::main_test::<pruefung::crc::crc8::Crc8>(&tests);
     }
 
@@ -26,7 +27,8 @@ mod crc16 {
 
     #[test]
     fn main() {
-        let tests = new_tests!("crc16/1", "crc16/2", "crc16/3", "crc16/4", "crc16/5", "crc16/6");
+        let tests =
+            new_tests!("crc16/1", "crc16/2", "crc16/3", "crc16/4", "crc16/5", "crc16/6", "crc16/7");
         digest::dev::main_test::<pruefung::crc::crc16::Crc16>(&tests);
     }
 
@@ -46,7 +48,8 @@ mod crc32 {
 
     #[test]
     fn main() {
-        let tests = new_tests!("crc32/1", "crc32/2", "crc32/3", "crc32/4", "crc32/5", "crc32/6");
+        let tests =
+            new_tests!("crc32/1", "crc32/2", "crc32/3", "crc32/4", "crc32/5", "crc32/6", "crc32/7");
         digest::dev::main_test::<pruefung::crc::crc32::Crc32>(&tests);
     }
 
@@ -66,8 +69,9 @@ mod crc32c {
 
     #[test]
     fn main() {
-        let tests =
-            new_tests!("crc32c/1", "crc32c/2", "crc32c/3", "crc32c/4", "crc32c/5", "crc32c/6");
+        let tests = new_tests!(
+            "crc32c/1", "crc32c/2", "crc32c/3", "crc32c/4", "crc32c/5", "crc32c/6", "crc32c/7"
+        );
         digest::dev::main_test::<pruefung::crc::crc32::Crc32c>(&tests);
     }
 
@@ -87,8 +91,10 @@ mod crc64 {
 
     #[test]
     fn main() {
-        let tests =
-            new_tests!("crc64/1", "crc64/2" /*, "crc64/3", "crc64/4", "crc64/5", "crc64/6"*/);
+        let tests = new_tests!(
+            "crc64/1", "crc64/2", /*, "crc64/3", "crc64/4", "crc64/5", "crc64/6"*/
+            "crc64/7"
+        );
         digest::dev::main_test::<pruefung::crc::crc64::Crc64>(&tests);
     }
 
