@@ -1,5 +1,11 @@
 //! [Ethernet][1] [CRC32][2] implementation.
 //!
+//! # Reference
+//!
+//! * Catalogue CRC entry](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-32)
+//! * CRC Catalogue entry: [CRC-32](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-32)
+//!
+//!
 //! [1]: https://en.wikipedia.org/wiki/Ethernet
 //! [2]: https://en.wikipedia.org/wiki/CRC32
 

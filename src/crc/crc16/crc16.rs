@@ -1,5 +1,10 @@
 //! [XMODEM][1] [CRC16][2] implementation.
 //!
+//! # Reference
+//!
+//! * CRC Catalogue entry: [XMODEM](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.xmodem)
+//!
+//!
 //! [1]: https://en.wikipedia.org/wiki/XMODEM
 //! [2]: https://en.wikipedia.org/wiki/CRC-16
 

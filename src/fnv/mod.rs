@@ -15,12 +15,12 @@
 //! both prefer `Fnv32z` over `Fnv0_32`).
 //!
 //!
-//! # Reference
+//! # References
 //!
-//! 1. Fowler, Glenn, Kiem-Phong Vo, Landon Curt Noll, Donald Eastlake, and Tony Hansen.
-//!    *Fowler-Noll-Vo Hash*. IETF Network Working Group, 7 June 2017.
-//!    [Internet Draft](https://tools.ietf.org/html/draft-eastlake-fnv-03).
-//! 2. Fowler-Noll-Vo online resources: http://www.isthe.com/chongo/tech/comp/fnv/
+//! * Fowler, Glenn, Kiem-Phong Vo, Landon Curt Noll, Donald Eastlake, and Tony Hansen.
+//!   *Fowler-Noll-Vo Hash*. IETF Network Working Group, 7 June 2017.
+//!   [Internet Draft](https://tools.ietf.org/html/draft-eastlake-fnv-03).
+//! * [Fowler-Noll-Vo online resources](http://www.isthe.com/chongo/tech/comp/fnv/)
 //!
 //!
 //! [1]: https://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function

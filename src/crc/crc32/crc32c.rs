@@ -1,9 +1,12 @@
 //! Castagnoli [CRC32][1] implementation.
 //!
-//! # Reference
-//! 1. Castagnoli, G., S. Brauer, and M. Herrmann. *Optimization of Cyclic Redundancy-Check Codes
-//!    with 24 and 32 Parity Bits*. IEEE Transactions on Communications 41, no. 6 (June 1993):
-//!    883–92. [doi:10.1109/26.231911](https://doi.org/10.1109/26.231911).
+//! # References
+//!
+//! * Castagnoli, G., S. Brauer, and M. Herrmann. *Optimization of Cyclic Redundancy-Check Codes
+//!   with 24 and 32 Parity Bits*. IEEE Transactions on Communications 41, no. 6 (June 1993):
+//!   883–92. [doi:10.1109/26.231911](https://doi.org/10.1109/26.231911).
+//! * CRC Catalogue entry: [CRC-32C](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-32c)
+//!
 //!
 //! [1]: https://en.wikipedia.org/wiki/CRC32
 

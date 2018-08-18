@@ -1,8 +1,10 @@
 //! [Adler32][1] checksum implementation.
 //!
-//! # Reference
-//! 1. Deutsch, Peter, and Jean-Loup Gailly. *ZLIB Compressed Data Format Specification Version
-//!    3.3*, 1996. [rfc:1950](https://tools.ietf.org/html/rfc1950).
+//! # References
+//!
+//! * Deutsch, Peter, and Jean-Loup Gailly. *ZLIB Compressed Data Format Specification Version
+//!   3.3*, 1996. [rfc:1950](https://tools.ietf.org/html/rfc1950).
+//!
 //!
 //! [1]: https://en.wikipedia.org/wiki/Adler-32
 

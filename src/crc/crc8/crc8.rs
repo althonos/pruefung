@@ -1,5 +1,10 @@
 //! [ITU][1] [CRC8][2] implementation.
 //!
+//! # Reference
+//!
+//! * CRC Catalogue entry: [CRC-8](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-8)
+//!
+//!
 //! [1]: https://en.wikipedia.org/wiki/CCITT
 //! [2]: https://en.wikipedia.org/wiki/CRC-8
 
