@@ -6,5 +6,5 @@ mod bsd;
 mod crc;
 mod fletcher16;
 mod fnv;
-mod unix;
 mod sysv;
+mod unix;

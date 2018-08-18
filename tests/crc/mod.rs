@@ -1,1 +1,1 @@
-mod crc32;
+mod crc;

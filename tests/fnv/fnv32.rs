@@ -7,14 +7,7 @@ mod fnv32 {
 
     #[test]
     fn main() {
-        let tests = new_tests!(
-            "fnv32/1",
-            "fnv32/2",
-            "fnv32/3",
-            "fnv32/4",
-            "fnv32/5",
-            "fnv32/6"
-        );
+        let tests = new_tests!("fnv32/1", "fnv32/2", "fnv32/3", "fnv32/4", "fnv32/5", "fnv32/6");
         crypto_tests::hash::main_test::<pruefung::fnv::Fnv32>(&tests);
     }
 
@@ -35,14 +28,8 @@ mod fnv32a {
 
     #[test]
     fn main() {
-        let tests = new_tests!(
-            "fnv32a/1",
-            "fnv32a/2",
-            "fnv32a/3",
-            "fnv32a/4",
-            "fnv32a/5",
-            "fnv32a/6"
-        );
+        let tests =
+            new_tests!("fnv32a/1", "fnv32a/2", "fnv32a/3", "fnv32a/4", "fnv32a/5", "fnv32a/6");
         crypto_tests::hash::main_test::<pruefung::fnv::Fnv32a>(&tests);
     }
 
@@ -63,14 +50,8 @@ mod fnv32z {
 
     #[test]
     fn main() {
-        let tests = new_tests!(
-            "fnv32z/1",
-            "fnv32z/2",
-            "fnv32z/3",
-            "fnv32z/4",
-            "fnv32z/5",
-            "fnv32z/6"
-        );
+        let tests =
+            new_tests!("fnv32z/1", "fnv32z/2", "fnv32z/3", "fnv32z/4", "fnv32z/5", "fnv32z/6");
         crypto_tests::hash::main_test::<pruefung::fnv::Fnv32z>(&tests);
     }
 
