@@ -86,7 +86,7 @@ mod consts {
 }
 
 /// The CRC32 hasher (ISO / Ethernet variant).
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Crc32 {
     state: u32,
 }

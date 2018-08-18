@@ -90,7 +90,7 @@ mod consts {
 }
 
 /// The CRC32C hasher (Castagnoli variant).
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Crc32c {
     state: u32,
 }

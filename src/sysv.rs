@@ -13,7 +13,7 @@ use core::hash::Hasher;
 use core::ops::Rem;
 
 /// The SysV hasher.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct SysV {
     state: u32,
 }

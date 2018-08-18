@@ -21,7 +21,7 @@ pub mod fnv64 {
     use generic_array;
 
     /// The FNV1-64 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv64 {
         state: u64,
     }
@@ -68,7 +68,7 @@ pub mod fnv64a {
     use generic_array;
 
     /// The FNV1a-64 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv64a {
         state: u64,
     }
@@ -115,7 +115,7 @@ pub mod fnv64z {
     use generic_array;
 
     /// The FNV0-64 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv64z {
         state: u64,
     }

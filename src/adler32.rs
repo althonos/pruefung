@@ -20,7 +20,7 @@ mod consts {
 }
 
 /// The Adler32 hasher.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Adler32 {
     sum1: u32,
     sum2: u32,

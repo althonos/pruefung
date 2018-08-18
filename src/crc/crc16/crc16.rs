@@ -84,7 +84,7 @@ mod consts {
 }
 
 /// The CRC16 hasher
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Crc16 {
     pub state: u16,
 }

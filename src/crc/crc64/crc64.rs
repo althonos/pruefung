@@ -272,7 +272,7 @@ mod consts {
 }
 
 /// The CRC64 hasher
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Crc64 {
     pub state: u64,
 }

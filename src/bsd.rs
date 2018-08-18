@@ -12,7 +12,7 @@ extern crate generic_array;
 use core::hash::Hasher;
 
 /// The BSD hasher.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Bsd {
     state: u16,
 }

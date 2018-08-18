@@ -90,7 +90,7 @@ mod consts {
 }
 
 /// The UNIX hasher.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Unix {
     state: u32,
     length: usize,

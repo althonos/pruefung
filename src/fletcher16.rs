@@ -16,7 +16,7 @@ mod consts {
 }
 
 /// The Fletcher16 hasher.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Fletcher16 {
     sum1: u16,
     sum2: u16,

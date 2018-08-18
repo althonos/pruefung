@@ -7,10 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Following sum with `Hasher` and `Digest` Implementation (#3):
+- Following sum with `Hasher` and `Digest` implementation ([#3](https://github.com/althonos/pruefung/pull/3)):
     * CRC8
     * CRC16
     * CRC64
+- Derived `Debug` implementation for all `Hasher`s
 
 ## [0.2.1] - 2017-11-23
 ### Added

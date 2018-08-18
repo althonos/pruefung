@@ -21,7 +21,7 @@ pub mod fnv32 {
     use generic_array;
 
     /// The FNV1-32 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv32 {
         state: u32,
     }
@@ -68,7 +68,7 @@ pub mod fnv32a {
     use generic_array;
 
     /// The FNV1a-32 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv32a {
         state: u32,
     }
@@ -115,7 +115,7 @@ pub mod fnv32z {
     use generic_array;
 
     /// The FNV0-32 hasher.
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Debug)]
     pub struct Fnv32z {
         state: u32,
     }
