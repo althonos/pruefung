@@ -2,7 +2,6 @@
 //!
 //! # Reference
 //!
-//! * Catalogue CRC entry](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-32)
 //! * CRC Catalogue entry: [CRC-32](http://reveng.sourceforge.net/crc-catalogue/all.htm#crc.cat.crc-32)
 //!
 //!
