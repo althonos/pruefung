@@ -1,16 +1,17 @@
+#[macro_use]
+extern crate digest;
 extern crate pruefung;
 
-use crypto_tests;
-use crypto_tests::hash::Test;
+use digest::dev::Test;
 
 #[test]
 fn main() {
     let tests = new_tests!("1", "2", "3", "4", "5", "6");
-    crypto_tests::hash::main_test::<pruefung::adler32::Adler32>(&tests);
+    digest::dev::main_test::<pruefung::adler32::Adler32>(&tests);
 }
 
 #[test]
 fn one_million_a() {
     let output = include_bytes!("data/one_million_a.output.bin");
-    crypto_tests::hash::one_million_a::<pruefung::adler32::Adler32>(output);
+    digest::dev::one_million_a::<pruefung::adler32::Adler32>(output);
 }

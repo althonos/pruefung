@@ -20,11 +20,11 @@ proc-macro = false
 harness    = true
 
 [dependencies]
-digest        = { version = "^0.6", optional = true, default-features = false }
-generic-array = { version = "^0.8", optional = true }
+digest        = { version = "^0.7", optional = true, default-features = false }
+generic-array = { version = "^0.9", optional = true }
 
 [dev-dependencies]
-crypto-tests = "0.5"
+digest = { version = "^0.7", features = ["dev"] }
 
 [badges]
 travis-ci   = { repository = "althonos/pruefung" }
@@ -46,3 +46,38 @@ fletcher16 = []
 fnv = []
 unix = []
 sysv = []
+
+[[test]]
+name = "adler32"
+path = "tests/adler32/mod.rs"
+required-features = ["adler32", "generic"]
+
+[[test]]
+name = "bsd"
+path = "tests/bsd/mod.rs"
+required-features = ["bsd", "generic"]
+
+[[test]]
+name = "crc"
+path = "tests/crc/mod.rs"
+required-features = ["crc", "generic"]
+
+[[test]]
+name = "fletcher16"
+path = "tests/fletcher16/mod.rs"
+required-features = ["fletcher16", "generic"]
+
+[[test]]
+name = "fnv"
+path = "tests/fnv/mod.rs"
+required-features = ["fnv", "generic"]
+
+[[test]]
+name = "sysv"
+path = "tests/sysv/mod.rs"
+required-features = ["sysv", "generic"]
+
+[[test]]
+name = "unix"
+path = "tests/unix/mod.rs"
+required-features = ["unix", "generic"]

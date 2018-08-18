@@ -8,10 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Following sum with `Hasher` and `Digest` implementation ([#3](https://github.com/althonos/pruefung/pull/3)):
-    * CRC8
-    * CRC16
-    * CRC64
+    * Crc8 (CCIT variant)
+    * Crc16 (XMODEM variant)
+    * Crc64 (*???* variant)
 - Derived `Debug` implementation for all `Hasher`s
+### Changed
+- Bumped required `digest` version to `v0.7`
+- Bumped required `generic-array` version to `v0.9`
+### Removed
+- [`crypto-test`](https://crates.io/crates/crypto-tests) test dependency
+  (replaced by [`digest::dev`](https://docs.rs/crate/digest/0.7.5/source/src/dev.rs))
 
 ## [0.2.1] - 2017-11-23
 ### Added
