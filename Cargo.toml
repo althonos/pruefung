@@ -21,7 +21,7 @@ harness    = true
 
 [dependencies]
 digest        = { version = "^0.7", optional = true, default-features = false }
-generic-array = { version = "^0.9", optional = true }
+generic-array = { version = "^0.13", optional = true }
 
 [dev-dependencies]
 digest = { version = "^0.7", features = ["dev"] }
