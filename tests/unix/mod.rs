@@ -1,17 +1,19 @@
-#[macro_use]
-extern crate digest;
+
 extern crate pruefung;
 
-use digest::dev::Test;
+use pruefung::new_test;
+use pruefung::unix::Unix;
+use pruefung::dev::{ digest_test, one_million_a };
+
+new_test!(test_1, "1", Unix, digest_test);
+new_test!(test_2, "2", Unix, digest_test);
+new_test!(test_3, "3", Unix, digest_test);
+new_test!(test_4, "4", Unix, digest_test);
+new_test!(test_5, "5", Unix, digest_test);
+new_test!(test_6, "6", Unix, digest_test);
 
 #[test]
-fn main() {
-    let tests = new_tests!("1", "2", "3", "4", "5", "6");
-    digest::dev::main_test::<pruefung::unix::Unix>(&tests);
-}
-
-#[test]
-fn one_million_a() {
+fn one_million_a_test() {
     let output = include_bytes!("data/one_million_a.output.bin");
-    digest::dev::one_million_a::<pruefung::unix::Unix>(output);
+    one_million_a::<Unix>(output);
 }
