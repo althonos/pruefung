@@ -20,11 +20,11 @@ proc-macro = false
 harness    = true
 
 [dependencies]
-digest        = { version = "^0.7", optional = true, default-features = false }
+digest        = { version = "^0.9", optional = true, default-features = false }
 generic-array = { version = "^0.9", optional = true }
 
 [dev-dependencies]
-digest = { version = "^0.7", features = ["dev"] }
+digest = { version = "^0.9", features = ["dev"] }
 
 [badges]
 travis-ci   = { repository = "althonos/pruefung" }
