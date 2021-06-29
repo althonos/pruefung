@@ -20,11 +20,11 @@ proc-macro = false
 harness    = true
 
 [dependencies]
-digest        = { version = "^0.7", optional = true, default-features = false }
-generic-array = { version = "^0.9", optional = true }
+digest        = { version = "0.9", optional = true, default-features = false }
+generic-array = { version = "0.14", optional = true }
 
 [dev-dependencies]
-digest = { version = "^0.7", features = ["dev"] }
+digest = { version = "0.9", features = ["dev"] }
 
 [badges]
 travis-ci   = { repository = "althonos/pruefung" }
@@ -34,6 +34,8 @@ maintenance = { status = "actively-developed" }
 [features]
 # default features: use everything
 default = ["generic", "adler32", "bsd", "crc", "fletcher16", "fnv", "unix", "sysv"]
+# devlopment macros
+dev = ["digest/dev"]
 # generic array digests
 generic = ["generic-array", "digest"]
 # std feature to disable no_std
@@ -50,34 +52,34 @@ sysv = []
 [[test]]
 name = "adler32"
 path = "tests/adler32/mod.rs"
-required-features = ["adler32", "generic"]
+required-features = ["adler32", "generic", "dev"]
 
 [[test]]
 name = "bsd"
 path = "tests/bsd/mod.rs"
-required-features = ["bsd", "generic"]
+required-features = ["bsd", "generic", "dev"]
 
 [[test]]
 name = "crc"
 path = "tests/crc/mod.rs"
-required-features = ["crc", "generic"]
+required-features = ["crc", "generic", "dev"]
 
 [[test]]
 name = "fletcher16"
 path = "tests/fletcher16/mod.rs"
-required-features = ["fletcher16", "generic"]
+required-features = ["fletcher16", "generic", "dev"]
 
 [[test]]
 name = "fnv"
 path = "tests/fnv/mod.rs"
-required-features = ["fnv", "generic"]
+required-features = ["fnv", "generic", "dev"]
 
 [[test]]
 name = "sysv"
 path = "tests/sysv/mod.rs"
-required-features = ["sysv", "generic"]
+required-features = ["sysv", "generic", "dev"]
 
 [[test]]
 name = "unix"
 path = "tests/unix/mod.rs"
-required-features = ["unix", "generic"]
+required-features = ["unix", "generic", "dev"]

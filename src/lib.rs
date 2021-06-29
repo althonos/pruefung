@@ -40,3 +40,6 @@ pub mod fnv;
 pub mod sysv;
 #[cfg(feature = "unix")]
 pub mod unix;
+
+#[cfg(feature = "dev")]
+pub mod dev;

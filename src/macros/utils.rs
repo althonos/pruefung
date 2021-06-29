@@ -13,27 +13,46 @@ macro_rules! implement_digest {
         }
 
         #[cfg(feature = "generic")]
-        impl digest::Input for $Hasher {
+        impl digest::Update for $Hasher {
             #[inline]
-            fn process(&mut self, input: &[u8]) {
-                self.write(input)
+            fn update(&mut self, data: impl AsRef<[u8]>) {
+                self.write(data.as_ref());
             }
         }
 
         #[cfg(feature = "generic")]
         impl digest::FixedOutput for $Hasher {
             type OutputSize = digest::generic_array::typenum::$OutputSize;
+
             #[inline]
-            fn fixed_result(self) -> generic_array::GenericArray<u8, Self::OutputSize> {
+            fn finalize_into(self, out: &mut generic_array::GenericArray<u8, Self::OutputSize>) {
                 use generic_array::typenum::Unsigned;
-                let mut array = digest::generic_array::GenericArray::default();
-                let mut out = self.finish();
+                let mut data = self.finish();
                 let size = Self::OutputSize::to_usize();
                 for i in 0..size {
-                    array[size - i - 1] = (out & u8::max_value() as u64) as u8;
-                    out >>= 8;
+                    out[size - i - 1] = (data & u8::max_value() as u64) as u8;
+                    data >>= 8;
                 }
-                array
+            }
+
+            #[inline]
+            fn finalize_into_reset(&mut self, out: &mut generic_array::GenericArray<u8, Self::OutputSize>) {
+                use generic_array::typenum::Unsigned;
+                let mut data = self.finish();
+                let size = Self::OutputSize::to_usize();
+                for i in 0..size {
+                    out[size - i - 1] = (data & u8::max_value() as u64) as u8;
+                    data >>= 8;
+                }
+                *self = Self::default();
+            }
+        }
+
+        #[cfg(feature = "generic")]
+        impl digest::Reset for $Hasher {
+            #[inline]
+            fn reset(&mut self) {
+                *self = Self::default();
             }
         }
     };

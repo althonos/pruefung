@@ -1,7 +1,7 @@
 #![no_std]
 #![feature(test)]
-#[macro_use]
-extern crate crypto_tests;
+
+extern crate digest;
 extern crate pruefung;
 
-bench_digest!(pruefung::unix::Unix);
+digest::bench!(pruefung::unix::Unix);

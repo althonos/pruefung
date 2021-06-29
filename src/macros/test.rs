@@ -41,7 +41,9 @@ macro_rules! unit_test_no_data {
             output_array!($Hasher, $output, array);
 
             // Check the output array is good
-            assert!(hasher.fixed_result() == array);
+            let mut out = GenericArray::<u8, <super::$Hasher as FixedOutput>::OutputSize>::default();
+            hasher.finalize_into(&mut out);
+            assert!(out == array);
         }
     };
 }
@@ -86,7 +88,11 @@ macro_rules! unit_test_single_byte {
             output_array!($Hasher, $output as u64, array);
 
             assert!(hasher.finish() == $output as u64);
-            assert!(hasher.fixed_result() == array);
+            
+            // Check the output array is good
+            let mut out = GenericArray::<u8, <super::$Hasher as FixedOutput>::OutputSize>::default();
+            hasher.finalize_into(&mut out);
+            assert!(out == array);
         }
     };
 }

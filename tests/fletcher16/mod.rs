@@ -1,17 +1,22 @@
-#[macro_use]
-extern crate digest;
+
 extern crate pruefung;
 
-use digest::dev::Test;
+use pruefung::new_test;
+use pruefung::fletcher16::Fletcher16;
+use pruefung::dev::{ digest_test, one_million_a };
+
+
+new_test!(test_1, "1", Fletcher16, digest_test);
+new_test!(test_2, "2", Fletcher16, digest_test);
+new_test!(test_3, "3", Fletcher16, digest_test);
+new_test!(test_4, "4", Fletcher16, digest_test);
+
+// FIXME: Test data files exist, but were not included in original tests.
+//new_test!(test_5, "5", Fletcher16, digest_test);
+//new_test!(test_6, "6", Fletcher16, digest_test);
 
 #[test]
-fn main() {
-    let tests = new_tests!("1", "2", "3", "4");
-    digest::dev::main_test::<pruefung::fletcher16::Fletcher16>(&tests);
-}
-
-#[test]
-fn one_million_a() {
+fn one_million_a_test() {
     let output = include_bytes!("data/one_million_a.output.bin");
-    digest::dev::one_million_a::<pruefung::fletcher16::Fletcher16>(output);
+    one_million_a::<Fletcher16>(output);
 }
