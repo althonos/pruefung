@@ -29,10 +29,10 @@ description = "Install the `sccache` compiled executable from GitHub releases."
 # condition_script = ['test ! -f "$HOME/.cargo/bin/sccache"']
 script = [
     '''
-    LATEST=$(cargo search sccache | grep sccache | cut -f2 -d"\"")
-    URL="https://github.com/mozilla/sccache/releases/download/${LATEST}/sccache-${LATEST}-x86_64-unknown-linux-musl.tar.gz"
+    LATEST=$(cargo search sccache | grep "^sccache =" | cut -f2 -d"\"")
+    URL="https://github.com/mozilla/sccache/releases/download/v${LATEST}/sccache-v${LATEST}-x86_64-unknown-linux-musl.tar.gz"
     curl -SsL $URL | tar xzv -C /tmp
-    mv /tmp/sccache-${LATEST}-x86_64-unknown-linux-musl/sccache $HOME/.cargo/bin/sccache
+    mv /tmp/sccache-v${LATEST}-x86_64-unknown-linux-musl/sccache $HOME/.cargo/bin/sccache
     '''
 ]
 
@@ -45,7 +45,7 @@ script = ['mkdir "$SCCACHE_DIR"']
 env = { "RUSTFLAGS" = "--cfg procmacro2_semver_exempt" }
 script = [
    '''
-   LATEST=$(cargo search cargo-tarpaulin | grep cargo-tarpaulin | cut -f2 -d"\"")
+   LATEST=$(cargo search cargo-tarpaulin | grep "^cargo-tarpaulin =" | cut -f2 -d"\"")
    CURRENT=$( (cargo tarpaulin -V 2>/dev/null || echo "none") | cut -d' ' -f3)
    if [ "$LATEST" != "$CURRENT" ]; then cargo install -f cargo-tarpaulin; fi
    '''
